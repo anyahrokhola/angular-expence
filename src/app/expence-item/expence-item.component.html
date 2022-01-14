@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="info-text">
+      <div class="category-wrapper">
+        <app-category-view [categoryId]="item.categoryId"></app-category-view>
+      </div>
+      <div class="title-wrapper">
+        <span class="name">{{ item.name }}</span>
+      </div>
+    </div>
+    <div class="action-wrapper">
+      <span class="price"> -${{ item.price }}</span>
+      <div class="actions">
+        <button (click)="editItem()" id="edit">
+          <img src="../assets/edit.png"  />
+        </button>
+        <button (click)="removeItem()" id="delete">
+          <img src="../assets/delete.png" alt=""  />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

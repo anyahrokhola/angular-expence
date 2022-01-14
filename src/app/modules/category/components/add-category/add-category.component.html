@@ -1,0 +1,23 @@
+<div class="container">
+  <span class="title">Enter new category</span>
+  <div class="form-category">
+    <span>Choose icon category</span>
+    <app-category-icon-picker [formControl]="iconControl"></app-category-icon-picker>
+    <span *ngIf="iconControl.invalid && (iconControl.dirty ||iconControl.touched)">
+      <div *ngIf="iconControl?.errors?.['required']">
+        <span class="error">Please choose an icon</span> 
+      </div>
+    </span>
+    <span>Enter name category</span>
+    <input type="text" [formControl]="nameControl">
+    <span *ngIf="nameControl.invalid && (nameControl.dirty ||nameControl.touched)">
+      <div *ngIf="nameControl?.errors?.['required']">
+        <span class="error">Please enter to date</span> 
+      </div>
+      </span>
+  </div>
+  <div class="actions">
+    <button class="close" (click)="ref.close()">Close</button>
+    <button class="add" (click)="addCategory()">Add</button>
+  </div>
+</div>

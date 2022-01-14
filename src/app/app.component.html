@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="wrapper-data">
+    <div class="wrapper-category">
+      <button (click)="openListCategory()">
+        <img src="../assets/config.png" alt="" />
+      </button>
+    </div>
+    <div class="wrapper-item">
+      <div class="item" (click)="addSalary()" id="budget">
+        <img src="../assets/wallet.png" />
+        <div class="money">
+          <div class="title">Budget</div>
+          <span>${{ budget }}</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <app-balance [expences]="data" [budget]="budget"></app-balance>
+      </div>
+    </div>
+
+    <div class="wrapper-loggs">
+      <div class="item-title">
+        <span class="title-expence">Expence</span>
+      </div>
+      <app-expence-list
+        [list]="data"
+        (remove)="handleRemove($event)"
+        (edit)="edit($event.item, $event.index)"
+      ></app-expence-list>
+    </div>
+    <div class="actions">
+      <button (click)="addExpence()" id="expence">+</button>
+    </div>
+    <div class="item">
+      <app-expence [expences]="data"></app-expence>
+    </div>
+  </div>
+</div>

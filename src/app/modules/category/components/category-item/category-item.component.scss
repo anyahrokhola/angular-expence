@@ -1,0 +1,26 @@
+.wrapper-list {
+  display: flex;
+  .icon {
+    flex: 1;
+    font-size: 22px;
+    text-align: center;
+  }
+  .name {
+    width: 200px;
+    text-align: center;
+  }
+}
+
+.action {
+  button {
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  img {
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+  }
+}

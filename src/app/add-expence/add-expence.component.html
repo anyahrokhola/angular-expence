@@ -1,0 +1,27 @@
+<div class="wrapper-form">
+  <div class="expence" [formGroup]="fullNameControl">
+    <div class="name">Please, enter your expence</div>
+    <input type="text" formControlName="name"/>
+    <span *ngIf="nameControl.invalid && (nameControl.dirty ||nameControl.touched)">
+      <div *ngIf="nameControl?.errors?.['required']">
+        <span class="error">Please enter to date</span> 
+      </div>
+    </span>
+    <div class="name">Please, enter expense amount</div>
+    <input type="text" formControlName="price"/>
+    <span *ngIf="priceControl.invalid && (priceControl.dirty ||priceControl.touched)">
+      <div *ngIf="priceControl?.errors?.['required']">
+        <span class="error-amount">Please enter to date</span> 
+      </div>
+      <div *ngIf="priceControl?.errors?.['pattern']">
+        <span class="error-amount">Please enter to number</span> 
+      </div>
+    </span>
+    <ng-select formControlName="categoryId" class="select" >
+      <ng-option *ngFor="let item of categoryService.categories" [value]="item.id"><i [class]="item.icon"></i>{{item.name}}</ng-option>
+   </ng-select>
+    <div class="button-class">
+      <button (click)="addExpence()">Add expence</button>
+    </div>
+  </div>
+</div>

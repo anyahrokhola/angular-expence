@@ -1,0 +1,45 @@
+:host{
+  max-height: 200px;
+  overflow-y: scroll;
+}
+ul {
+  list-style: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .item-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 20px;
+
+    .title-icon {
+      margin-left: 50px;
+    }
+    .title-name {
+      margin-right: 50px;
+    }
+  }
+
+  .action {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    margin: 10px;
+
+    button {
+      cursor: pointer;
+      border: none;
+      background-color: #5cfa80;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      &:hover {
+        background-color: #26a222;
+      }
+    }
+  }
+}

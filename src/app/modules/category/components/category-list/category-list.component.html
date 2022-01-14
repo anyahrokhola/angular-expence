@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="item-title">
+    <span class="title-icon">icon</span>
+    <span class="title-name">name</span>
+  </div>
+  <ul>
+    <li *ngFor="let item of categoryService.categories">
+      <app-category-item [itemCategory]="item" (removeClick)="categoryService.removeCategory(item)"></app-category-item>
+    </li>
+  </ul>
+  <div class="action">
+    <button (click)="openAddCategory()">Add category</button>
+  </div>
+</div>

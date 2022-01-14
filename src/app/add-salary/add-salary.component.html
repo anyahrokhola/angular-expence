@@ -1,0 +1,17 @@
+<div class="wrapper-form">
+  <div class="salary" >
+    <div class="name">Please, enter your budget</div>
+    <input type="text" [formControl]="priceControl"/>
+    <span *ngIf="priceControl.invalid && (priceControl.dirty ||priceControl.touched)">
+      <div *ngIf="priceControl?.errors?.['required']">
+        <span class="error">Please enter to date</span> 
+      </div>
+      <div *ngIf="priceControl?.errors?.['pattern']">
+        <span class="error">Please enter to number</span> 
+      </div>
+      </span>
+    <div class="button-class">
+      <button (click)="addSalaryValue()">Add to salary</button>
+    </div>
+  </div>
+</div>

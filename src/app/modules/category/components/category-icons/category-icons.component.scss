@@ -1,0 +1,9 @@
+.list-img {
+  display: flex;
+  flex-wrap: wrap;
+  i {
+    cursor: pointer;
+    font-size: 40px;
+    margin: 25px;
+  }
+}

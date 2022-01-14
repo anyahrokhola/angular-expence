@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let item of list; index as i" class="loggs">
+    <app-expence-item [item]="item" (removeClick)="removeFromList(i)" (editClick)="editItem($event, i)" class="item"></app-expence-item>
+  </li>
+</ul>

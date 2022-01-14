@@ -1,0 +1,10 @@
+<div class="wrapper-list">
+  <span class="icon"><i [class]="itemCategory.icon"></i></span>
+  <span class="name">{{ itemCategory.name }}</span>
+
+  <div class="action">
+    <button id="delete" (click)="removeItem()">
+      <img src="../assets/delete.png" alt="delete" />
+    </button>
+  </div>
+</div>
