@@ -27,7 +27,7 @@ export class AddExpenceComponent implements OnInit {
     return this.fullNameControl.controls['price'] as FormControl;
   }
 
-  constructor(private ref: DialogRef, public categoryService: CategoryService) {}
+  constructor(public ref: DialogRef, public categoryService: CategoryService) {}
 
   ngOnInit(){
   }

@@ -37,8 +37,11 @@
     </div>
   </div>
   <div slot="footer">
-    <app-btn-negative (click)="addExpence()">
-      Add
+    <app-btn-negative class="m-r-auto" (click)="ref.close()">
+      <span slot="button">Close</span>
     </app-btn-negative>
+    <app-btn-positive (click)="addExpence()">
+      Add
+    </app-btn-positive>
   </div>
 </app-modal-main>

@@ -16,6 +16,9 @@
     </ul>
   </div>
   <div slot="footer">
+    <app-btn-negative class="m-r-auto" (click)="ref.close()">
+      <span slot="button">Close</span>
+    </app-btn-negative>
     <app-btn-positive (click)="openAddCategory()">
       Add category
     </app-btn-positive>
