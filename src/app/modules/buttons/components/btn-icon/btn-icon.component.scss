@@ -1,0 +1,20 @@
+button {
+  padding: 5px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: 150ms;
+
+  &:hover {
+    filter: brightness(85%);
+  }
+}
+
+img {
+  margin: 0 5px;
+  width: 15px;
+  height: 15px;
+}
+
+  

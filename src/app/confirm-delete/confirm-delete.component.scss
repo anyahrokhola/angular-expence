@@ -1,36 +1,5 @@
-:host {
+:host{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
+  flex: 1;
 }
 
-p{
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.actions {
-  button {
-    padding: 5px 15px;
-    border: none;
-    transition: 150ms;
-    cursor: pointer;
-
-    &.confirm {
-      background-color: #5cfa80;
-    }
-
-    &.reset {
-      background-color: #faa05c;
-    }
-    &:hover {
-      &.confirm {
-        background-color: #26a222;
-      }
-      &.reset {
-        background-color: #a24922;
-      }
-    }
-  }
-}

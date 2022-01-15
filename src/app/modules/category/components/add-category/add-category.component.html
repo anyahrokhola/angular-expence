@@ -1,5 +1,6 @@
-<div class="container">
-  <span class="title">Enter new category</span>
+<app-modal-main>
+  <span class="title" slot="header">Enter new category</span>
+<div class="container" slot="body">
   <div class="form-category">
     <span>Choose icon category</span>
     <app-category-icon-picker [formControl]="iconControl"></app-category-icon-picker>
@@ -16,8 +17,14 @@
       </div>
       </span>
   </div>
-  <div class="actions">
-    <button class="close" (click)="ref.close()">Close</button>
-    <button class="add" (click)="addCategory()">Add</button>
-  </div>
 </div>
+
+<div class="actions" slot="footer">
+  <app-btn-negative class="m-r-auto" (click)="ref.close()">
+    <span slot="button">Close</span>
+  </app-btn-negative>
+    <app-btn-positive (click)="addCategory()">
+      <span slot="button">Add</span>
+    </app-btn-positive>
+</div>
+</app-modal-main>

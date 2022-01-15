@@ -17,16 +17,12 @@
 
   .expence {
     padding: 10px 15px;
-    margin: 30px 0;
+    margin-bottom: 100px;
     border: 1px solid red;
 
     .name {
       margin: 8px 0;
     }
-    button {
-      border: 1px solid red;
-    }
-
     span {
       color: red;
     }
@@ -35,6 +31,12 @@
       margin-right: 5px;
     }
   }
+
+
+  .select{
+    margin: 15px 0;
+  }
+
 }
 
 .select ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items {

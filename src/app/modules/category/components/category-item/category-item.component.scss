@@ -1,13 +1,31 @@
 .wrapper-list {
-  display: flex;
+
+  .item {
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 5px 0;
+    background-color: #E6E6FA;
+    border-radius: 5px;
+  }
   .icon {
-    flex: 1;
+    display: flex;
     font-size: 22px;
     text-align: center;
+    margin-left: 10px;
   }
-  .name {
-    width: 200px;
-    text-align: center;
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+
+    .name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-left: 10px;
+    }
   }
 }
 

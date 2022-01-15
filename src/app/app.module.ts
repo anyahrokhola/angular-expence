@@ -14,6 +14,8 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
 import { ExpenceComponent } from './expence/expence.component';
 import { CategoryModule } from './modules/category/category.module'
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ModalModule } from './modules/modal/modal.module';
+import { ButtonModule } from './modules/buttons/buttons.module';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,17 @@ import { NgSelectModule } from '@ng-select/ng-select';
   ],
   imports: [
     BrowserModule,
-    DialogModule.forRoot(),
+    DialogModule.forRoot({
+      minHeight: 300,
+      width: 600,
+      maxHeight: '80%'
+    }),
     FormsModule, 
     ReactiveFormsModule,
     CategoryModule,
-    NgSelectModule
+    NgSelectModule,
+    ModalModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

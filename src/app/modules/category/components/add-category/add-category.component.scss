@@ -1,3 +1,7 @@
+:host{
+  display: flex;
+  flex: 1;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -11,12 +15,6 @@
     i {
       font-size: 18px;
     }
-
-    span {
-      margin-top: 10px;
-    }
-    
-
     .error {
       color: red;
     }
@@ -26,31 +24,5 @@
     font-size: 20px;
     font-weight: 700;
     margin: 20px 0;
-  }
-
-  .actions {
-    margin-top: 40px;
-    button {
-      padding: 5px 15px;
-      border: none;
-      transition: 150ms;
-      cursor: pointer;
-
-      &.add {
-        background-color: #5cfa80;
-      }
-
-      &.close {
-        background-color: #faa05c;
-      }
-      &:hover {
-        &.add {
-          background-color: #26a222;
-        }
-        &.close {
-          background-color: #a24922;
-        }
-      }
-    }
   }
 }

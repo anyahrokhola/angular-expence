@@ -1,14 +1,23 @@
-<div class="container">
-  <div class="item-title">
-    <span class="title-icon">icon</span>
-    <span class="title-name">name</span>
+<app-modal-main>
+  <div class="name" slot="header">List categories</div>
+  <div class="container" slot="body">
+    <div class="item-title">
+      <span class="title-icon">icon</span>
+      <span class="title-name">name</span>
+      <span class="title-action">action</span>
+    </div>
+    <ul>
+      <li *ngFor="let item of categoryService.categories">
+        <app-category-item
+          [itemCategory]="item"
+          (removeClick)="categoryService.removeCategory(item)"
+        ></app-category-item>
+      </li>
+    </ul>
   </div>
-  <ul>
-    <li *ngFor="let item of categoryService.categories">
-      <app-category-item [itemCategory]="item" (removeClick)="categoryService.removeCategory(item)"></app-category-item>
-    </li>
-  </ul>
-  <div class="action">
-    <button (click)="openAddCategory()">Add category</button>
+  <div slot="footer">
+    <app-btn-positive (click)="openAddCategory()">
+      Add category
+    </app-btn-positive>
   </div>
-</div>
+</app-modal-main>

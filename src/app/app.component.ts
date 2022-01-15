@@ -42,10 +42,7 @@ export class AppComponent {
     });
   }
   addExpence() {
-    const dialogRef = this.dialog.open(AddExpenceComponent, {
-      width: '400px',
-      height: '400px',
-    });
+    const dialogRef = this.dialog.open(AddExpenceComponent);
     dialogRef.afterClosed$.subscribe((result: Expence | null) => {
       if (result) {
         this.expenses += Number(result.price);
@@ -58,9 +55,9 @@ export class AppComponent {
   }
 
   handleRemove(i: number) {
-    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-      width: '350px',
-      minHeight: '200px',
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent,{
+      width: 350,
+      minHeight: 250
     });
 
     dialogRef.afterClosed$.subscribe((result) => {
@@ -118,9 +115,6 @@ export class AppComponent {
   }
 
   openListCategory() {
-    const dialogRef = this.dialog.open(CategoryListComponent, {
-      width: '350px',
-      height: '200px',
-    });
+    const dialogRef = this.dialog.open(CategoryListComponent);
   }
 }

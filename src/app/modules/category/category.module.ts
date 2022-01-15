@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CategoryIconPickerComponent } from './components/category-icon-picker/category-icon-picker.component';
 import { CategoryViewComponent } from './components/category-view/category-view.component';
+import { ModalModule } from '../modal/modal.module';
+import { ButtonModule } from '../buttons/buttons.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { CategoryViewComponent } from './components/category-view/category-view.
     FormsModule, 
     ReactiveFormsModule,
     NgSelectModule,
-    CommonModule
+    CommonModule,
+    ModalModule,
+    ButtonModule
   ],
   providers: [],
   exports:[

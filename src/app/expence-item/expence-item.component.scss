@@ -45,26 +45,20 @@
         margin-right: 10px;
         font-weight: 700;
       }
-      .actions {
-        
-        button {
-          padding: 5px;
-          border: none;
-          border-radius: 15px;
-          cursor: pointer;
-          margin: 0 5px;
 
-          &#delete{
-            background-color: #FFA07A;
-          }
-          &#edit{
-            background-color: #90EE90;
-          }
-        }
+      .actions {
+        display: flex;
         img {
           margin: 0 5px;
           width: 15px;
           height: 15px;
+        }
+        #edit {
+          background-color: #90ee90;
+        }
+
+        #delete {
+          background-color: #ffa07a;
         }
       }
     }

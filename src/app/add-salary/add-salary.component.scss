@@ -4,12 +4,6 @@
   align-items: center;
   flex-direction: column;
 
-  button {
-    background-color: white;
-    cursor: pointer;
-    border-radius: 3px;
-  }
-
   input {
     margin: 10px 0;
   }
@@ -23,8 +17,6 @@
       bottom: 0;
       color: red;
     }
-    button {
-      border: 1px solid green;
-    }
   }
 }
+
