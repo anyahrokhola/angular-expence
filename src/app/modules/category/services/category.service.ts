@@ -45,24 +45,24 @@ export class CategoryService {
     this.saveCategories();
   }
 
-  // editCategory(item: Category, i: number){
-  //   console.log(this.categories[i]);
-  //   const dialogRef = this.dialog.open(AddCategoryComponent, {
-  //     data: {
-  //       ...item
-  //     },
-  //   });
+  editCategory(item: Category, i: number){
+    console.log(this.categories[i]);
+    const dialogRef = this.dialog.open(AddCategoryComponent, {
+      data: {
+        ...item
+      },
+    });
    
-  //   dialogRef.afterClosed$.subscribe((result: Category | null) => {
-  //     if (result) {
-  //       this.categories[i] = result;
-  //       this.categories = [...this.categories];
-  //     }
-  //     this.saveCategories();
-  //     console.log(this.categories[i]);
-  //   });
+    dialogRef.afterClosed$.subscribe((result: Category | null) => {
+      if (result) {
+        this.categories[i] = result;
+        this.categories = [...this.categories];
+      }
+      this.saveCategories();
+      console.log(this.categories[i]);
+    });
     
-  // }
+  }
 
   private saveCategories() {
     const jsonData = JSON.stringify([...this.categories]);

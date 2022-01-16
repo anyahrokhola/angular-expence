@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
-import { AddExpenceComponent } from './add-expence/add-expence.component';
-import { AddSalaryComponent } from './add-salary/add-salary.component';
-import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { AddExpenceComponent } from './components/add-expence/add-expence.component';
+import { AddSalaryComponent } from './components/add-salary/add-salary.component';
+import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
 import { Expence } from './interfaces/expence';
 import { CategoryListComponent } from './modules/category/components/category-list/category-list.component';
 import { SalaryService } from './servises/salary.service';

@@ -10,6 +10,7 @@
       <li *ngFor="let item of categoryService.categories; index as i">
         <app-category-item
           [itemCategory]="item"
+          (editClick)="categoryService.editCategory(item, i)"
           (removeClick)="categoryService.removeCategory(item)"
         ></app-category-item>
       </li>

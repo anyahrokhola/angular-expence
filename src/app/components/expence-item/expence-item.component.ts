@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Expence } from '../interfaces/expence';
+import { Expence } from '../../interfaces/expence';
 
 @Component({
   selector: 'app-expence-item',

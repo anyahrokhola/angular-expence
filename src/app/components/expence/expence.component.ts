@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Expence } from '../interfaces/expence';
-import { SalaryService } from '../servises/salary.service';
+import { Expence } from '../../interfaces/expence';
+import { SalaryService } from '../../servises/salary.service';
 
 @Component({
   selector: 'app-expence',

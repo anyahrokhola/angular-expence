@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { AddExpenceComponent } from '../add-expence/add-expence.component';
-import { Expence } from '../interfaces/expence';
+import { Expence } from '../../interfaces/expence';
 import { DialogService } from '@ngneat/dialog';
 import { Output } from '@angular/core';
 

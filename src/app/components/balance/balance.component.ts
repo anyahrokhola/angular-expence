@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { Expence } from '../interfaces/expence';
-import { ColorService } from '../servises/changeColor/color.service';
-import { SalaryService } from '../servises/salary.service';
+import { AppComponent } from '../../app.component';
+import { Expence } from '../../interfaces/expence';
+import { ColorService } from '../../servises/changeColor/color.service';
+import { SalaryService } from '../../servises/salary.service';
 
 @Component({
   selector: 'app-balance',

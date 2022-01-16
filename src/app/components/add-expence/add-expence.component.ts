@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogRef } from '@ngneat/dialog';
-import { Expence } from '../interfaces/expence';
+import { Expence } from '../../interfaces/expence';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Category } from '../modules/category/interfaces/category';
-import { CategoryService } from '../modules/category/services/category.service';
+import { Category } from '../../modules/category/interfaces/category';
+import { CategoryService } from '../../modules/category/services/category.service';
 
 @Component({
   selector: 'app-add-expence',
