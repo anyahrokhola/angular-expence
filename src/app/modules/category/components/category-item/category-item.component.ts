@@ -11,6 +11,7 @@ export class CategoryItemComponent implements OnInit {
   @Input() itemCategory: Category;
 
   @Output() removeClick = new EventEmitter<Category>();
+  @Output() editClick = new EventEmitter<Category>();
   constructor() { }
 
   ngOnInit(): void {
@@ -18,6 +19,10 @@ export class CategoryItemComponent implements OnInit {
 
   removeItem() {
     this.removeClick.emit(this.itemCategory)
+  }
+
+  editItem() {
+    this.editClick.emit(this.itemCategory)
   }
 
 }

@@ -14,9 +14,7 @@ export class CategoryListComponent implements OnInit {
   public icon: string = "";
   public name: string = "";
   public count: number = 0;
-
-  @Output() remove = new EventEmitter<number>();
-
+  
   constructor(private dialog: DialogService, public ref: DialogRef, public categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -26,4 +24,5 @@ export class CategoryListComponent implements OnInit {
   openAddCategory(){
     const dialogRef = this.dialog.open(AddCategoryComponent);
   }
+  
 }

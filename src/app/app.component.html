@@ -1,13 +1,20 @@
 <div class="container">
   <div class="wrapper-data">
     <div class="wrapper-category">
-      <button (click)="openListCategory()">
-        <img src="../assets/config.png" alt="" />
-      </button>
+      <app-btn-icon (click)="openListCategory()">
+        <div class="tooltip">
+          <span class="tooltiptext">Categories</span>
+          <img slot="button" src="../assets/config.png" />
+        </div>
+      </app-btn-icon>
     </div>
     <div class="wrapper-item">
       <div class="item" (click)="addSalary()" id="budget">
-        <img src="../assets/wallet.png" />
+        <div class="tooltip">
+          <span class="tooltiptext">Add to salary</span>
+          <img src="../assets/wallet.png" />
+        </div>
+        
         <div class="money">
           <div class="title">Budget</div>
           <span>${{ budget }}</span>
@@ -30,7 +37,10 @@
       ></app-expence-list>
     </div>
     <div class="actions">
-      <button (click)="addExpence()" id="expence">+</button>
+      <div class="tooltip">
+        <span class="tooltiptext">Add new expence</span>
+        <button (click)="addExpence()" id="expence">+</button>
+      </div> 
     </div>
     <div class="item">
       <app-expence [expences]="data"></app-expence>

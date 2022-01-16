@@ -12,10 +12,16 @@
       <span class="price"> -${{ item.price }}</span>
       <div class="actions">
         <app-btn-icon (click)="editItem()">
-          <img slot="button" src="../assets/edit.png" />
+          <div class="tooltip">
+            <span class="tooltiptext">Edit this item</span>
+            <img slot="button" src="../assets/edit.png" />
+          </div>
         </app-btn-icon>
         <app-btn-icon (click)="removeItem()">
-          <img slot="button" src="../assets/delete.png" alt="" />
+          <div class="tooltip">
+            <span class="tooltiptext">Delete this item</span>
+            <img slot="button" src="../assets/delete.png" alt="" />
+          </div>
         </app-btn-icon>
       </div>
     </div>

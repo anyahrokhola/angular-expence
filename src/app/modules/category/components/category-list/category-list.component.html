@@ -7,7 +7,7 @@
       <span class="title-action">action</span>
     </div>
     <ul>
-      <li *ngFor="let item of categoryService.categories">
+      <li *ngFor="let item of categoryService.categories; index as i">
         <app-category-item
           [itemCategory]="item"
           (removeClick)="categoryService.removeCategory(item)"

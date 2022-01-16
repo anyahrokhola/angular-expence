@@ -17,7 +17,7 @@ import { BtnPositiveComponent } from './components/btn-positive/btn-positive.com
   exports:[
     BtnPositiveComponent,
     BtnNegativeComponent,
-    BtnIconComponent
+    BtnIconComponent,
   ],
   providers: []
 })
