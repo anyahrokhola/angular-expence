@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { DialogService } from '@ngneat/dialog';
+import { AddCategoryComponent } from '../components/add-category/add-category.component';
 import { Category } from '../interfaces/category';
 
 @Injectable({
@@ -7,12 +9,16 @@ import { Category } from '../interfaces/category';
 export class CategoryService {
   public categories: Category[] = [];
 
-  constructor() {
+  constructor(private dialog: DialogService) {
     const json = localStorage.getItem('categories');
 
     if (json) {
       this.categories = JSON.parse(json);
     }
+  }
+
+  ngOnInit(){
+    console.log(this.categories);
   }
 
   getCategoryId(): number {
@@ -38,6 +44,25 @@ export class CategoryService {
     this.categories = this.categories.filter((item)=>item.id != category.id)
     this.saveCategories();
   }
+
+  // editCategory(item: Category, i: number){
+  //   console.log(this.categories[i]);
+  //   const dialogRef = this.dialog.open(AddCategoryComponent, {
+  //     data: {
+  //       ...item
+  //     },
+  //   });
+   
+  //   dialogRef.afterClosed$.subscribe((result: Category | null) => {
+  //     if (result) {
+  //       this.categories[i] = result;
+  //       this.categories = [...this.categories];
+  //     }
+  //     this.saveCategories();
+  //     console.log(this.categories[i]);
+  //   });
+    
+  // }
 
   private saveCategories() {
     const jsonData = JSON.stringify([...this.categories]);
