@@ -7,18 +7,16 @@
       <span class="name">{{ itemCategory.name }}</span>
     </div>
     <div class="action">
-      <app-btn-icon (click)="editItem()">
-        <div class="tooltip">
-          <span class="tooltiptext">Edit</span>
-          <img slot="button" src="../assets/edit.png" />
-        </div>
-      </app-btn-icon>
-      <app-btn-icon (click)="removeItem()">
-        <div class="tooltip">
-          <span class="tooltiptext">Delete</span>
+      <app-tooltip text="Edit" direction="left">
+        <app-btn-icon (click)="editItem()">
+          <img src="../assets/edit.png" />
+        </app-btn-icon>
+      </app-tooltip>
+      <app-tooltip text="Delete" direction="left">
+        <app-btn-icon (click)="removeItem()">
           <img src="../assets/delete.png" alt="" />
-        </div>
-      </app-btn-icon>
+        </app-btn-icon>
+      </app-tooltip>
     </div>
   </div>
 </div>

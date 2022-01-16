@@ -24,7 +24,8 @@
     <span slot="button">Close</span>
   </app-btn-negative>
     <app-btn-positive (click)="addCategory()">
-      <span slot="button">Add</span>
+      <span *ngIf="isEdit" slot="button">Edit</span>
+      <span *ngIf="!isEdit" slot="button">Add</span>
     </app-btn-positive>
 </div>
 </app-modal-main>

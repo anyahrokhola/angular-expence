@@ -11,18 +11,16 @@
     <div class="action-wrapper">
       <span class="price"> -${{ item.price }}</span>
       <div class="actions">
+        <app-tooltip text="Edit this item">
         <app-btn-icon (click)="editItem()">
-          <div class="tooltip">
-            <span class="tooltiptext">Edit this item</span>
-            <img slot="button" src="../assets/edit.png" />
-          </div>
+            <img src="../assets/edit.png" />
         </app-btn-icon>
-        <app-btn-icon (click)="removeItem()">
-          <div class="tooltip">
-            <span class="tooltiptext">Delete this item</span>
-            <img slot="button" src="../assets/delete.png" alt="" />
-          </div>
+      </app-tooltip>
+      <app-tooltip text="Delete this item">
+        <app-btn-icon (click)="removeItem()">  
+            <img src="../assets/delete.png"/>
         </app-btn-icon>
+      </app-tooltip>
       </div>
     </div>
   </div>

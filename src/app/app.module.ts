@@ -16,6 +16,7 @@ import { CategoryModule } from './modules/category/category.module'
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from './modules/modal/modal.module';
 import { ButtonModule } from './modules/buttons/buttons.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ButtonModule } from './modules/buttons/buttons.module';
     CategoryModule,
     NgSelectModule,
     ModalModule,
-    ButtonModule
+    ButtonModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

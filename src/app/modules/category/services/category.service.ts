@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
+import { BehaviorSubject } from 'rxjs';
 import { AddCategoryComponent } from '../components/add-category/add-category.component';
 import { Category } from '../interfaces/category';
 
@@ -7,6 +8,7 @@ import { Category } from '../interfaces/category';
   providedIn: 'root',
 })
 export class CategoryService {
+  public categories$ = new BehaviorSubject<Category[]>([]);
   public categories: Category[] = [];
 
   constructor(private dialog: DialogService) {
@@ -14,11 +16,8 @@ export class CategoryService {
 
     if (json) {
       this.categories = JSON.parse(json);
+      this.categories$.next(this.categories);
     }
-  }
-
-  ngOnInit(){
-    console.log(this.categories);
   }
 
   getCategoryId(): number {
@@ -36,38 +35,38 @@ export class CategoryService {
   createCategory(data: Omit<Category, 'id'>): Category {
     const category: Category = { ...data, id: this.getCategoryId() };
     this.categories.push(category);
+    this.categories$.next(this.categories);
     this.saveCategories();
     return category;
   }
 
-  removeCategory(category: Category){
-    this.categories = this.categories.filter((item)=>item.id != category.id)
+  removeCategory(category: Category) {
+    this.categories = this.categories.filter((item) => item.id != category.id);
+    this.categories$.next(this.categories);
     this.saveCategories();
   }
 
-  editCategory(item: Category, i: number){
-    console.log(this.categories[i]);
+  editCategory(item: Category, i: number) {
+    console.log({ ...item });
     const dialogRef = this.dialog.open(AddCategoryComponent, {
       data: {
-        ...item
+        ...item,
       },
     });
-   
+
     dialogRef.afterClosed$.subscribe((result: Category | null) => {
       if (result) {
         this.categories[i] = result;
         this.categories = [...this.categories];
+        this.categories$.next(this.categories);
       }
       this.saveCategories();
       console.log(this.categories[i]);
     });
-    
   }
 
   private saveCategories() {
     const jsonData = JSON.stringify([...this.categories]);
     localStorage.setItem('categories', jsonData);
   }
-
-  
 }

@@ -15,10 +15,11 @@ export class AddCategoryComponent implements OnInit {
   public icon: string;
   public categories: Category[] = [];
   public count: number = 0;
+  public isEdit = !!this.ref.data;
 
   categoryControl = new FormGroup({
-    name: new FormControl('',Validators.required),
-    icon: new FormControl('',Validators.required),
+    name: new FormControl(this.ref.data?.name ,Validators.required),
+    icon: new FormControl(this.ref.data?.icon,Validators.required),
   });
 
   public get nameControl(): FormControl {
@@ -30,7 +31,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
 
-  constructor(private dialog: DialogService, public ref: DialogRef, private categoryService: CategoryService) {}
+  constructor(private dialog: DialogService, public ref: DialogRef<Category | undefined>, private categoryService: CategoryService) {}
 
   ngOnInit(): void {}
 
@@ -45,12 +46,18 @@ export class AddCategoryComponent implements OnInit {
 
   addCategory() {
     this.categoryControl.markAllAsTouched();
-
     if (this.categoryControl.valid) {
-      const newCategory: Category = this.categoryService.createCategory({
-        ...this.categoryControl.value
-      });
-      console.log('newCategory',newCategory);
+      let newCategory: Category;
+      if(!this.isEdit){
+        newCategory = this.categoryService.createCategory({
+          ...this.categoryControl.value
+        });
+      }
+      if(this.isEdit){
+        newCategory = {
+          ...this.ref.data, ...this.categoryControl.value
+        }
+      }
       this.ref.close(newCategory);
     }
   }

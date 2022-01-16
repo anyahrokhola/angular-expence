@@ -10,6 +10,7 @@ import { CategoryIconPickerComponent } from './components/category-icon-picker/c
 import { CategoryViewComponent } from './components/category-view/category-view.component';
 import { ModalModule } from '../modal/modal.module';
 import { ButtonModule } from '../buttons/buttons.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ButtonModule } from '../buttons/buttons.module';
     NgSelectModule,
     CommonModule,
     ModalModule,
-    ButtonModule
+    ButtonModule,
+    SharedModule
   ],
   providers: [],
   exports:[

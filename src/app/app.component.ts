@@ -55,9 +55,9 @@ export class AppComponent {
   }
 
   handleRemove(i: number) {
-    const dialogRef = this.dialog.open(ConfirmDeleteComponent,{
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: 350,
-      minHeight: 250
+      minHeight: 250,
     });
 
     dialogRef.afterClosed$.subscribe((result) => {
@@ -116,5 +116,10 @@ export class AppComponent {
 
   openListCategory() {
     const dialogRef = this.dialog.open(CategoryListComponent);
+
+    dialogRef.afterClosed$.subscribe(() => {
+      this.data = [...this.data];
+      console.log('this data',this.data)
+    });
   }
 }

@@ -1,0 +1,41 @@
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+  &:hover .tooltiptext {
+    transition: 500ms;
+    visibility: visible;
+  }
+
+  &.left .tooltiptext{
+    top: 50%;
+    right: 105%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  &.center .tooltiptext{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.right .tooltiptext{
+    top: -5px;
+    left: 105%;
+    bottom: auto;
+  }
+
+  .tooltiptext {
+    position: absolute;
+    z-index: 1;
+    min-width: 120px;
+    visibility: hidden;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 14px;   
+    bottom: calc(100% + 10px);
+  }
+}
