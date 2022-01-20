@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { DialogRef } from '@ngneat/dialog';
 import { icons } from '../../constants/icons.const';
+import { IconData } from '../../interfaces/category';
 
 @Component({
   selector: 'app-category-icons',
@@ -10,13 +12,19 @@ import { icons } from '../../constants/icons.const';
 export class CategoryIconsComponent implements OnInit {
 
   public readonly icons = icons;
-  constructor(public ref: DialogRef) { }
+  
+  colorControl = new FormControl(this.ref.data?.color);
+
+  constructor(public ref: DialogRef<IconData>) { }
 
   ngOnInit(): void {
   }
 
   clickIcon(iconName: string){
-    console.log(this.ref.close(iconName));
-    console.log(iconName);
+    const data: IconData = {
+      icon: iconName, 
+      color: this.colorControl.value
+    }
+    this.ref.close(data);
   }
 }

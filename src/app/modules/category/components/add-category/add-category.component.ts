@@ -11,15 +11,15 @@ import { CategoryService } from '../../services/category.service';
   styleUrls: ['./add-category.component.scss'],
 })
 export class AddCategoryComponent implements OnInit {
-
   public icon: string;
+  public color: string;
   public categories: Category[] = [];
   public count: number = 0;
   public isEdit = !!this.ref.data;
 
   categoryControl = new FormGroup({
-    name: new FormControl(this.ref.data?.name ,Validators.required),
-    icon: new FormControl(this.ref.data?.icon,Validators.required),
+    name: new FormControl(this.ref.data?.name, Validators.required),
+    icon: new FormControl(this.ref.data?.icon, Validators.required),
   });
 
   public get nameControl(): FormControl {
@@ -30,36 +30,34 @@ export class AddCategoryComponent implements OnInit {
     return this.categoryControl.controls['icon'] as FormControl;
   }
 
-
-  constructor(private dialog: DialogService, public ref: DialogRef<Category | undefined>, private categoryService: CategoryService) {}
+  constructor(
+    private dialog: DialogService,
+    public ref: DialogRef<Category | undefined>,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {}
-
-  addIcon() {
-    const dialogRef = this.dialog.open(CategoryIconsComponent);
-
-    dialogRef.afterClosed$.subscribe((result) => {
-      this.icon = result;
-      console.log('this.icon = ', this.icon);
-    });
-  }
 
   addCategory() {
     this.categoryControl.markAllAsTouched();
     if (this.categoryControl.valid) {
       let newCategory: Category;
-      if(!this.isEdit){
+      if (!this.isEdit) {
         newCategory = this.categoryService.createCategory({
-          ...this.categoryControl.value
+          ...this.categoryControl.value,
+          icon: this.iconControl.value.icon,
+          color: this.iconControl.value.color,
         });
       }
-      if(this.isEdit){
+      if (this.isEdit) {
         newCategory = {
-          ...this.ref.data, ...this.categoryControl.value
-        }
+          ...this.ref.data,
+          ...this.categoryControl.value,
+          icon: this.iconControl.value.icon,
+          color: this.iconControl.value.color,
+        };
       }
       this.ref.close(newCategory);
     }
   }
-
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DialogService } from '@ngneat/dialog';
+import { IconData } from '../../interfaces/category';
 import { CategoryIconsComponent } from '../category-icons/category-icons.component';
 
 @Component({
@@ -18,7 +19,7 @@ import { CategoryIconsComponent } from '../category-icons/category-icons.compone
 export class CategoryIconPickerComponent
   implements OnInit, ControlValueAccessor
 {
-  public icon: string | null = null;
+  public icon: IconData | null = null;
   public disabled: boolean = false;
 
   onChange: any = () => {};
@@ -28,7 +29,7 @@ export class CategoryIconPickerComponent
 
   ngOnInit(): void {}
 
-  writeValue(icon: string): void {
+  writeValue(icon: IconData): void {
     this.icon = icon;
   }
   registerOnChange(fn: any): void {
@@ -42,13 +43,18 @@ export class CategoryIconPickerComponent
   }
 
   addIcon() {
-    const dialogRef = this.dialog.open(CategoryIconsComponent);
+    const dialogRef = this.dialog.open(CategoryIconsComponent,{
+      data:{
+        ...this.icon
+      }
+    });
     
     this.onTouch();
 
-    dialogRef.afterClosed$.subscribe((result) => {
+    dialogRef.afterClosed$.subscribe((result: IconData) => {
       this.icon = result;
       this.onChange(result);
+      console.log(result);
     });
   }
 }

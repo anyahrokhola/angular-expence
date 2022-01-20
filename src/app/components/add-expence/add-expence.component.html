@@ -31,7 +31,7 @@
         <ng-option
           *ngFor="let item of categoryService.categories"
           [value]="item.id"
-          ><i [class]="item.icon"></i>{{ item.name }}</ng-option
+          ><i [class]="item.icon" [ngStyle]="{color: item.color}"></i>{{ item.name }}</ng-option
         >
       </ng-select>
     </div>

@@ -11,6 +11,7 @@ import { CategoryViewComponent } from './components/category-view/category-view.
 import { ModalModule } from '../modal/modal.module';
 import { ButtonModule } from '../buttons/buttons.module';
 import { SharedModule } from '../shared/shared.module';
+import { CategoryColorComponent } from './components/category-color/category-color.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharedModule } from '../shared/shared.module';
     CategoryItemComponent,
     CategoryIconsComponent,
     CategoryIconPickerComponent,
-    CategoryViewComponent
+    CategoryViewComponent,
+    CategoryColorComponent
   ],
   imports: [
     FormsModule, 
