@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DialogRef } from '@ngneat/dialog';
 
 import { CategoryIconsComponent } from './category-icons.component';
 
@@ -8,7 +9,13 @@ describe('CategoryIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryIconsComponent ]
+      declarations: [ CategoryIconsComponent ],
+      providers: [
+        {
+          provide: DialogRef,
+          useValue: {},
+        },
+      ]
     })
     .compileComponents();
   });

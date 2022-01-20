@@ -8,14 +8,18 @@ describe('ExpenceItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpenceItemComponent ]
-    })
-    .compileComponents();
+      declarations: [ExpenceItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ExpenceItemComponent);
     component = fixture.componentInstance;
+    component.item = {
+      name: 'test Name',
+      price: 0,
+      categoryId: -1,
+    };
     fixture.detectChanges();
   });
 

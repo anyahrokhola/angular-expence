@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DialogModule } from '@ngneat/dialog';
 
 import { CategoryIconPickerComponent } from './category-icon-picker.component';
 
@@ -8,6 +9,7 @@ describe('CategoryIconPickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [DialogModule.forRoot()],
       declarations: [ CategoryIconPickerComponent ]
     })
     .compileComponents();

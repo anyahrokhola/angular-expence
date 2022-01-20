@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DialogModule, DialogRef } from '@ngneat/dialog';
 
 import { ConfirmDeleteComponent } from './confirm-delete.component';
 
@@ -8,7 +9,14 @@ describe('ConfirmDeleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmDeleteComponent ]
+      imports: [DialogModule.forRoot()],
+      declarations: [ ConfirmDeleteComponent ],
+      providers: [
+        {
+          provide: DialogRef,
+          useValue: {},
+        },
+      ]
     })
     .compileComponents();
   });

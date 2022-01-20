@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DialogRef } from '@ngneat/dialog';
 
 import { CategoryColorComponent } from './category-color.component';
 
@@ -8,7 +9,13 @@ describe('CategoryColorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryColorComponent ]
+      declarations: [ CategoryColorComponent ],
+      providers: [
+        {
+          provide: DialogRef,
+          useValue: {},
+        },
+      ]
     })
     .compileComponents();
   });

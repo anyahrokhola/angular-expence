@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { DialogModule } from '@ngneat/dialog';
 
 import { CategoryService } from './category.service';
 
@@ -6,7 +7,9 @@ describe('CategoryService', () => {
   let service: CategoryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [DialogModule.forRoot()],
+    });
     service = TestBed.inject(CategoryService);
   });
 

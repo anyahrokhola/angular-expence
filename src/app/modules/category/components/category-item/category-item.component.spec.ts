@@ -16,6 +16,11 @@ describe('CategoryItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CategoryItemComponent);
     component = fixture.componentInstance;
+    component.itemCategory = {
+      id: -1,
+      name: 'test Category',
+      icon: 'ri-brush-2-line',
+    }
     fixture.detectChanges();
   });
 

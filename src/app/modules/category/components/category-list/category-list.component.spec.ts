@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DialogModule, DialogRef } from '@ngneat/dialog';
 
 import { CategoryListComponent } from './category-list.component';
 
@@ -8,9 +9,15 @@ describe('ListCategoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryListComponent ]
-    })
-    .compileComponents();
+      imports: [DialogModule.forRoot()],
+      declarations: [CategoryListComponent],
+      providers: [
+        {
+          provide: DialogRef,
+          useValue: {},
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

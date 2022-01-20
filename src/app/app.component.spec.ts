@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { DialogModule } from '@ngneat/dialog';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      imports: [DialogModule.forRoot()],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
@@ -15,5 +15,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
 });

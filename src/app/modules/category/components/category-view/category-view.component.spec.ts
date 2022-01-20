@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DialogModule } from '@ngneat/dialog';
+import { CategoryService } from '../../services/category.service';
 
 import { CategoryViewComponent } from './category-view.component';
 
@@ -8,7 +10,9 @@ describe('CategoryViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryViewComponent ]
+      imports: [DialogModule.forRoot()],
+      declarations: [ CategoryViewComponent ],
+      providers:[CategoryService]
     })
     .compileComponents();
   });

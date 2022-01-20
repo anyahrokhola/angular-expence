@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DialogModule } from '@ngneat/dialog';
 
 import { ExpenceListComponent } from './expence-list.component';
 
@@ -8,6 +9,7 @@ describe('ExpenceListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [DialogModule.forRoot()],
       declarations: [ ExpenceListComponent ]
     })
     .compileComponents();
