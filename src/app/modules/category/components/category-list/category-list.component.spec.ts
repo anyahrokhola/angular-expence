@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DialogModule, DialogRef } from '@ngneat/dialog';
+import { ButtonModule } from 'src/app/modules/buttons/buttons.module';
 
 import { CategoryListComponent } from './category-list.component';
 
@@ -9,7 +10,7 @@ describe('ListCategoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogModule.forRoot()],
+      imports: [DialogModule.forRoot(), ButtonModule],
       declarations: [CategoryListComponent],
       providers: [
         {

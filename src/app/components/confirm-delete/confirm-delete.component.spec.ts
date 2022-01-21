@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DialogModule, DialogRef } from '@ngneat/dialog';
+import { ButtonModule } from 'src/app/modules/buttons/buttons.module';
+import { ModalModule } from 'src/app/modules/modal/modal.module';
 
 import { ConfirmDeleteComponent } from './confirm-delete.component';
 
@@ -9,7 +11,7 @@ describe('ConfirmDeleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogModule.forRoot()],
+      imports: [DialogModule.forRoot(), ModalModule, ButtonModule],
       declarations: [ ConfirmDeleteComponent ],
       providers: [
         {

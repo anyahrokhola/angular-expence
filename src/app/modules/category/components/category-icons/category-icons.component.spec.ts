@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogRef } from '@ngneat/dialog';
+import { CategoryColorComponent } from '../category-color/category-color.component';
 
 import { CategoryIconsComponent } from './category-icons.component';
 
@@ -9,15 +11,15 @@ describe('CategoryIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryIconsComponent ],
+      imports: [FormsModule, ReactiveFormsModule],
+      declarations: [CategoryIconsComponent, CategoryColorComponent],
       providers: [
         {
           provide: DialogRef,
           useValue: {},
         },
-      ]
-    })
-    .compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

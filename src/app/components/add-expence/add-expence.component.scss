@@ -1,8 +1,22 @@
-.wrapper-form {
+.wrapper {
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+
+    .name{
+      margin: 0 6px;
+    }
+
+    .error-block{
+      position: absolute;
+      bottom: 0;
+    }
+  }
 
   button {
     background-color: white;
@@ -12,17 +26,14 @@
   }
 
   input {
-    margin: 10px 0;
+    margin: 15px 0;
   }
 
   .expence {
-    padding: 10px 15px;
-    margin-bottom: 100px;
+    padding: 20px 15px;
     border: 1px solid red;
+    margin: 30px 0;
 
-    .name {
-      margin: 8px 0;
-    }
     span {
       color: red;
     }
@@ -31,12 +42,13 @@
       margin-right: 5px;
     }
   }
-
-  .select {
-    margin: 15px 0;
-  }
 }
 
 .select ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items {
   max-height: 110px;
+  width: 100%;
+}
+
+.ng-select {
+  width: 100%;
 }

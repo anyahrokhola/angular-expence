@@ -38,7 +38,8 @@ export class AddExpenceComponent implements OnInit {
     const newExpence: Expence = {
       name: name,
       price: Number(price),
-      categoryId: categoryId
+      categoryId: categoryId,
+      date: new Date()
     };
 
     this.fullNameControl.markAllAsTouched();

@@ -1,5 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule, DialogRef } from '@ngneat/dialog';
+import { ButtonModule } from 'src/app/modules/buttons/buttons.module';
+import { ModalModule } from 'src/app/modules/modal/modal.module';
+import { CategoryIconPickerComponent } from '../category-icon-picker/category-icon-picker.component';
 
 import { AddCategoryComponent } from './add-category.component';
 
@@ -9,16 +13,21 @@ describe('AddCategoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogModule.forRoot()],
-      declarations: [ AddCategoryComponent ],
+      imports: [
+        DialogModule.forRoot(),
+        ModalModule,
+        ButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+      ],
+      declarations: [AddCategoryComponent, CategoryIconPickerComponent],
       providers: [
         {
           provide: DialogRef,
           useValue: {},
         },
-      ]
-    })
-    .compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

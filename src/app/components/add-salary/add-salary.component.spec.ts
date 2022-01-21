@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DialogRef } from '@ngneat/dialog';
+import { ButtonModule } from 'src/app/modules/buttons/buttons.module';
+import { ModalModule } from 'src/app/modules/modal/modal.module';
 
 import { AddSalaryComponent } from './add-salary.component';
 
@@ -9,15 +11,15 @@ describe('AddSalaryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddSalaryComponent ],
+      imports: [ModalModule, ButtonModule],
+      declarations: [AddSalaryComponent],
       providers: [
         {
           provide: DialogRef,
           useValue: {},
         },
-      ]
-    })
-    .compileComponents();
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

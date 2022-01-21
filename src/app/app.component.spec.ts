@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { DialogModule } from '@ngneat/dialog';
 import { AppComponent } from './app.component';
+import { ExpenceComponent } from './components/expence/expence.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DialogModule.forRoot()],
-      declarations: [AppComponent],
+      declarations: [AppComponent, ExpenceComponent],
     }).compileComponents();
   });
 

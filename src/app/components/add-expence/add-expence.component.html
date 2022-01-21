@@ -1,47 +1,59 @@
 <app-modal-main>
   <div class="name" slot="header">Add expence</div>
-  <div class="wrapper-form" slot="body">
+  <div class="wrapper" slot="body">
     <div class="expence" [formGroup]="fullNameControl">
-      <div class="name">Name</div>
-      <input type="text" formControlName="name" />
-      <span
-        *ngIf="
-          nameControl.invalid && (nameControl.dirty || nameControl.touched)
-        "
-      >
-        <div *ngIf="nameControl?.errors?.['required']">
-          <span class="error">Please enter to date</span>
+      <div class="form-wrapper">
+          <div class="name">Name:</div>
+          <input type="text" formControlName="name" />
+        <div class="error-block">
+          <span
+            *ngIf="
+              nameControl.invalid && (nameControl.dirty || nameControl.touched)
+            "
+          >
+            <div *ngIf="nameControl?.errors?.['required']">
+              <span class="error">Please enter to date</span>
+            </div>
+          </span>
         </div>
-      </span>
-      <div class="name">Amount</div>
-      <input type="text" formControlName="price" />
-      <span
-        *ngIf="
-          priceControl.invalid && (priceControl.dirty || priceControl.touched)
-        "
-      >
-        <div *ngIf="priceControl?.errors?.['required']">
-          <span class="error-amount">Please enter to date</span>
+        <div class="name">Category:</div>
+        <ng-select formControlName="categoryId" class="select">
+          <ng-option
+            *ngFor="let item of categoryService.categories"
+            [value]="item.id"
+            ><i [class]="item.icon" [ngStyle]="{ color: item.color }"></i
+            >{{ item.name }}</ng-option
+          >
+        </ng-select>
+      </div>
+
+      <div class="form-wrapper">
+        <div class="name">Amount:</div>
+        <input type="text" formControlName="price" />
+        <div class="error-block amount">
+          <span
+            *ngIf="
+              priceControl.invalid &&
+              (priceControl.dirty || priceControl.touched)
+            "
+          >
+            <div *ngIf="priceControl?.errors?.['required']">
+              <span class="error-amount">Please enter to date</span>
+            </div>
+            <div *ngIf="priceControl?.errors?.['pattern']">
+              <span class="error-amount">Please enter to number</span>
+            </div>
+          </span>
         </div>
-        <div *ngIf="priceControl?.errors?.['pattern']">
-          <span class="error-amount">Please enter to number</span>
-        </div>
-      </span>
-      <ng-select formControlName="categoryId" class="select">
-        <ng-option
-          *ngFor="let item of categoryService.categories"
-          [value]="item.id"
-          ><i [class]="item.icon" [ngStyle]="{color: item.color}"></i>{{ item.name }}</ng-option
-        >
-      </ng-select>
+        <div class="name">Date:</div>
+        <input type="date" />
+      </div>
     </div>
   </div>
   <div slot="footer">
     <app-btn-negative class="m-r-auto" (click)="ref.close()">
       <span slot="button">Close</span>
     </app-btn-negative>
-    <app-btn-positive (click)="addExpence()">
-      Add
-    </app-btn-positive>
+    <app-btn-positive (click)="addExpence()"> Add </app-btn-positive>
   </div>
 </app-modal-main>

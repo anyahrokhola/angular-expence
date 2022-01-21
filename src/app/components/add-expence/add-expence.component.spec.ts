@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { DialogModule, DialogRef } from '@ngneat/dialog';
+import { ButtonModule } from 'src/app/modules/buttons/buttons.module';
+import { ModalModule } from 'src/app/modules/modal/modal.module';
 
 import { AddExpenceComponent } from './add-expence.component';
 
@@ -9,7 +12,7 @@ describe('AddExpenceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogModule.forRoot()],
+      imports: [DialogModule.forRoot(), ModalModule, ButtonModule, NgSelectModule],
       declarations: [AddExpenceComponent],
       providers: [
         {

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ButtonModule } from 'src/app/modules/buttons/buttons.module';
 
 import { ExpenceItemComponent } from './expence-item.component';
 
@@ -8,6 +9,7 @@ describe('ExpenceItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ButtonModule],
       declarations: [ExpenceItemComponent],
     }).compileComponents();
   });
@@ -19,6 +21,7 @@ describe('ExpenceItemComponent', () => {
       name: 'test Name',
       price: 0,
       categoryId: -1,
+      date: new Date()
     };
     fixture.detectChanges();
   });
