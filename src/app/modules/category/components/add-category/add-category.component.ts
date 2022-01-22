@@ -11,15 +11,16 @@ import { CategoryService } from '../../services/category.service';
   styleUrls: ['./add-category.component.scss'],
 })
 export class AddCategoryComponent implements OnInit {
-  public icon: string;
-  public color: string;
   public categories: Category[] = [];
   public count: number = 0;
   public isEdit = !!this.ref.data;
 
   categoryControl = new FormGroup({
     name: new FormControl(this.ref.data?.name, Validators.required),
-    icon: new FormControl(this.ref.data?.icon, Validators.required),
+    icon: new FormControl({
+      icon: this.ref.data?.icon,
+      color: this.ref.data?.color
+    }, Validators.required),
   });
 
   public get nameControl(): FormControl {

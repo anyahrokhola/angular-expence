@@ -1,4 +1,5 @@
 export interface Expence {
+    id: number,
     name: string,
     price: number,
     categoryId?: number,

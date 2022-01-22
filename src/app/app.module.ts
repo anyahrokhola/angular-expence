@@ -17,6 +17,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from './modules/modal/modal.module';
 import { ButtonModule } from './modules/buttons/buttons.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SharedModule } from './modules/shared/shared.module';
     ExpenceItemComponent,
     ConfirmDeleteComponent,
     ExpenceComponent,
+    DateFormatPipe,
   ],
   imports: [
     BrowserModule,

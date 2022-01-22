@@ -1,9 +1,12 @@
-ul {
-  margin: 10px 0;
-  padding: 0;
+:host{
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 350px;
+}
+
+ul {
+  margin: 10px 0;
+  padding: 0;
   padding: 15px;
 }
 

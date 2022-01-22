@@ -41,20 +41,39 @@ export class AppComponent {
       this.saveBudget.saveBudget(this.budget);
     });
   }
+
+  getIdExpence(): number {
+    let max: number = 0;
+
+    for (let i = 0; i < this.data.length; i++) {
+      if (max < this.data[i].id) {
+        max = this.data[i].id;
+      }
+    }
+
+    return max + 1;
+  }
+
   addExpence() {
     const dialogRef = this.dialog.open(AddExpenceComponent);
     dialogRef.afterClosed$.subscribe((result: Expence | null) => {
       if (result) {
+        result.id = this.getIdExpence();
+        console.log('result id',result.id = this.getIdExpence());
         this.expenses += Number(result.price);
         this.balance = this.budget - this.expenses;
 
         this.data = [...this.data, result];
+        console.log('this.data, result: ',[...this.data, result]);
+        console.log('result: ', result);
+        
       }
+      
       this.saveData();
     });
   }
 
-  handleRemove(i: number) {
+  handleRemove(item: Expence) {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: 350,
       minHeight: 250,
@@ -62,6 +81,7 @@ export class AppComponent {
 
     dialogRef.afterClosed$.subscribe((result) => {
       if (result) {
+        const i = this.data.findIndex(el => el.id === item.id)
         this.expenses -= this.data[i].price;
         this.balance += this.data[i].price;
 
@@ -72,7 +92,7 @@ export class AppComponent {
     });
   }
 
-  edit(item: Expence, i: number) {
+  edit(item: Expence) {
     const dialogRef = this.dialog.open(AddExpenceComponent, {
       data: {
         ...item,
@@ -81,16 +101,24 @@ export class AppComponent {
 
     dialogRef.afterClosed$.subscribe((result: Expence | null) => {
       if (result) {
+        const i = this.data.findIndex(el => el.id === item.id)
         this.data[i] = result;
         this.data = [...this.data];
         this.expenses = this.salary.getExpenceSum(this.data);
+        console.log('i: ',i);
       }
       this.saveData();
     });
   }
 
   saveData(): void {
-    const jsonData = JSON.stringify([...this.data]);
+    const preparedData: any[] = [...this.data];
+
+    for (let i = 0; i < preparedData.length; i++) {
+      preparedData[i].date = preparedData[i].date.toString();
+    }
+    const jsonData = JSON.stringify(preparedData);
+
     localStorage.setItem('myData', jsonData);
   }
 
@@ -101,7 +129,14 @@ export class AppComponent {
       return [];
     }
 
-    return JSON.parse(json);
+    const expences: Expence[] = JSON.parse(json);
+
+    for (let i = 0; i < expences.length; i++) {
+      expences[i].date = new Date(expences[i].date || null);
+    }
+    console.log('expences',expences);
+    console.log('json',JSON.parse(json));
+    return expences;
   }
 
   getBudget(): number {
@@ -119,7 +154,7 @@ export class AppComponent {
 
     dialogRef.afterClosed$.subscribe(() => {
       this.data = [...this.data];
-      console.log('this data',this.data)
+      console.log('this data', this.data);
     });
   }
 }

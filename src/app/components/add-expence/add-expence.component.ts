@@ -12,11 +12,15 @@ import { CategoryService } from '../../modules/category/services/category.servic
 })
 export class AddExpenceComponent implements OnInit {
   public data: Expence[] = [];
-  
+
   fullNameControl = new FormGroup({
     name: new FormControl(this.ref.data?.name, Validators.required),
-    price: new FormControl(this.ref.data?.price, [Validators.required, Validators.pattern("^[0-9]*$")]),
-    categoryId: new FormControl(this.ref.data?.categoryId)
+    price: new FormControl(this.ref.data?.price, [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ]),
+    categoryId: new FormControl(this.ref.data?.categoryId),
+    date: new FormControl(this.ref.data?.date || new Date()),
   });
 
   public get nameControl(): FormControl {
@@ -29,18 +33,19 @@ export class AddExpenceComponent implements OnInit {
 
   constructor(public ref: DialogRef, public categoryService: CategoryService) {}
 
-  ngOnInit(){
-  }
+  ngOnInit() {}
 
   addExpence() {
-    const { name, price, categoryId } = this.fullNameControl.value;
+    const { name, price, categoryId, date } = this.fullNameControl.value;
 
-    const newExpence: Expence = {
+    const newExpence: Partial<Expence> = {
       name: name,
       price: Number(price),
       categoryId: categoryId,
-      date: new Date()
+      date: date,
     };
+
+    console.log('date', date);
 
     this.fullNameControl.markAllAsTouched();
 

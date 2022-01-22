@@ -61,7 +61,6 @@ export class CategoryService {
         this.categories$.next(this.categories);
       }
       this.saveCategories();
-      console.log(this.categories[i]);
     });
   }
 
