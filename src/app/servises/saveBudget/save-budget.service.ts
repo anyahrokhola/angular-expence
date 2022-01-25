@@ -6,7 +6,9 @@ import { Expence } from 'src/app/interfaces/expence';
 })
 export class SaveBudgetService {
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   saveBudget(valute: number) {
     const budget = JSON.stringify(valute);
