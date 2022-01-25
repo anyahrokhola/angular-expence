@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Category } from 'src/app/modules/category/interfaces/category';
-import { CategoryService } from 'src/app/modules/category/services/category.service';
+import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { Expence } from '../../interfaces/expence';
 
 @Component({
@@ -8,35 +8,16 @@ import { Expence } from '../../interfaces/expence';
   templateUrl: './expence-item.component.html',
   styleUrls: ['./expence-item.component.scss'],
 })
-export class ExpenceItemComponent implements OnInit {
+export class ExpenceItemComponent {
   @Input() item: Expence;
 
-  @Output() removeClick = new EventEmitter<Expence>();
-  @Output() editClick = new EventEmitter<Expence>();
-
-  public categories: Category[] = [];
-
-  constructor(public categoryService: CategoryService) {}
-  
-
-  ngOnChanges(): void {
-    
-  } 
-
-  ngOnInit(): void {}
-
-  // getCategoriesName(id: number){
-  //   this.categories = this.categoryService.categories;
-  //   const category = this.categories.find(item => item.id === id);
-  //   return category.name;
-
-  // }
+  constructor(private expenceService: ExpenceServiceService) {}
 
   removeItem() {
-    this.removeClick.emit(this.item);
+    this.expenceService.remove(this.item)
   }
 
   editItem() {
-    this.editClick.emit(this.item);
+    this.expenceService.edit(this.item)
   }
 }

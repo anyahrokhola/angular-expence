@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { Expence } from '../../interfaces/expence';
 import { SalaryService } from '../../servises/salary.service';
 
@@ -8,18 +9,14 @@ import { SalaryService } from '../../servises/salary.service';
   styleUrls: ['./expence.component.scss']
 })
 export class ExpenceComponent implements OnInit {
-
-  @Input() expences!: Expence[];
   
   public expence: number = 0;
-  public isNegative: Boolean = false;
 
-  constructor(private salaryService: SalaryService) {}
+  constructor(private salaryService: SalaryService, private expenceService: ExpenceServiceService) {}
 
-  ngOnChanges() {
-    this.expence = this.salaryService.getExpenceSum(this.expences);
+  ngOnInit(): void {
+    this.expenceService.expences$.subscribe(expences => {
+      this.expence = this.salaryService.getExpenceSum(expences);
+    })
   }
-
-  ngOnInit(): void {}
-
 }

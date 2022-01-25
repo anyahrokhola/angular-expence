@@ -1,14 +1,8 @@
 <div class="group" *ngFor="let group of groupedList">
-  <span>{{group.date | dateFormat}}</span>
+  <span>{{ group.date | dateFormat }}</span>
   <ul>
     <li *ngFor="let item of group.expences; index as i" class="loggs">
-      <app-expence-item
-        [item]="item"
-        (removeClick)="removeFromList($event)"
-        (editClick)="editItem(item)"
-        class="item"
-      ></app-expence-item>
-      
+      <app-expence-item [item]="item" class="item"></app-expence-item>
     </li>
   </ul>
 </div>

@@ -4,6 +4,7 @@ import { Expence } from '../../interfaces/expence';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../modules/category/interfaces/category';
 import { CategoryService } from '../../modules/category/services/category.service';
+import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 
 @Component({
   selector: 'app-add-expence',
@@ -12,6 +13,7 @@ import { CategoryService } from '../../modules/category/services/category.servic
 })
 export class AddExpenceComponent implements OnInit {
   public data: Expence[] = [];
+  public isEdit = !!this.ref.data;
 
   fullNameControl = new FormGroup({
     name: new FormControl(this.ref.data?.name, Validators.required),
@@ -31,32 +33,32 @@ export class AddExpenceComponent implements OnInit {
     return this.fullNameControl.controls['price'] as FormControl;
   }
 
-  constructor(public ref: DialogRef, public categoryService: CategoryService) {}
+  constructor(
+    public ref: DialogRef,
+    public categoryService: CategoryService,
+    public expenceService: ExpenceServiceService
+  ) {}
 
   ngOnInit() {}
 
   addExpence() {
-    const { name, price, categoryId} = this.fullNameControl.value;
-    const date = new Date(this.fullNameControl.value.date);
+    let newExpence: Expence;
 
-    console.log('this.fullNameControl.value.date',this.fullNameControl.value.date);
-    const newExpence: Partial<Expence> = {
-      name: name,
-      price: Number(price),
-      categoryId: categoryId,
-      date: date
-    };
-
-    console.log('newExpence before closed',newExpence);
-
-    console.log('date', date);
-    console.log('typeof date', typeof date);
     this.fullNameControl.markAllAsTouched();
-
     if (this.fullNameControl.valid) {
+      if (!this.isEdit) {
+        newExpence = this.expenceService.createExpence(
+          this.fullNameControl.value
+        );
+      }
+      if (this.isEdit) {
+        newExpence = {
+          ...this.ref.data,
+          ...this.fullNameControl.value,
+          
+        };
+      }
       this.ref.close(newExpence);
     }
-
-    console.log('newExpence after closed',newExpence);
   }
 }

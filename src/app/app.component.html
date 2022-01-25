@@ -18,7 +18,7 @@
         </div>
       </app-tooltip>
       <div class="item">
-        <app-balance [expences]="data" [budget]="budget"></app-balance>
+        <app-balance [budget]="budget"></app-balance>
       </div>
     </div>
 
@@ -26,11 +26,7 @@
       <div class="item-title">
         <span class="title-expence">Expence</span>
       </div>
-      <app-expence-list
-        [list]="data"
-        (remove)="handleRemove($event)"
-        (edit)="edit($event)"
-      ></app-expence-list>
+      <app-expence-list></app-expence-list>
     </div>
     <div class="actions">
       <app-tooltip text="Add new expence">
@@ -38,7 +34,7 @@
       </app-tooltip>
     </div>
     <div class="item">
-      <app-expence [expences]="data"></app-expence>
+      <app-expence></app-expence>
     </div>
   </div>
 </div>
