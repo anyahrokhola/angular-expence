@@ -59,16 +59,16 @@ export class AppComponent {
     dialogRef.afterClosed$.subscribe((result: Expence | null) => {
       if (result) {
         result.id = this.getIdExpence();
-        console.log('result id',result.id = this.getIdExpence());
+        result.date = new Date(result.date);
+        console.log('result', result);
+        // console.log('result id',result.id = this.getIdExpence());
         this.expenses += Number(result.price);
         this.balance = this.budget - this.expenses;
 
         this.data = [...this.data, result];
-        console.log('this.data, result: ',[...this.data, result]);
-        console.log('result: ', result);
-        
+        // console.log('this.data, result: ',[...this.data, result]);
+        // console.log('result: ', result);
       }
-      
       this.saveData();
     });
   }
@@ -81,7 +81,7 @@ export class AppComponent {
 
     dialogRef.afterClosed$.subscribe((result) => {
       if (result) {
-        const i = this.data.findIndex(el => el.id === item.id)
+        const i = this.data.findIndex((el) => el.id === item.id);
         this.expenses -= this.data[i].price;
         this.balance += this.data[i].price;
 
@@ -101,11 +101,11 @@ export class AppComponent {
 
     dialogRef.afterClosed$.subscribe((result: Expence | null) => {
       if (result) {
-        const i = this.data.findIndex(el => el.id === item.id)
+        const i = this.data.findIndex((el) => el.id === item.id);
         this.data[i] = result;
         this.data = [...this.data];
         this.expenses = this.salary.getExpenceSum(this.data);
-        console.log('i: ',i);
+        console.log('i: ', i);
       }
       this.saveData();
     });
@@ -114,9 +114,10 @@ export class AppComponent {
   saveData(): void {
     const preparedData: any[] = [...this.data];
 
-    for (let i = 0; i < preparedData.length; i++) {
-      preparedData[i].date = preparedData[i].date.toString();
-    }
+    // for (let i = 0; i < preparedData.length; i++) {
+    //   preparedData[i].date = preparedData[i].date.toString();
+    // }
+    
     const jsonData = JSON.stringify(preparedData);
 
     localStorage.setItem('myData', jsonData);
@@ -134,8 +135,8 @@ export class AppComponent {
     for (let i = 0; i < expences.length; i++) {
       expences[i].date = new Date(expences[i].date || null);
     }
-    console.log('expences',expences);
-    console.log('json',JSON.parse(json));
+    console.log('expences', expences);
+    console.log('json', JSON.parse(json));
     return expences;
   }
 

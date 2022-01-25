@@ -18,6 +18,7 @@ import { ModalModule } from './modules/modal/modal.module';
 import { ButtonModule } from './modules/buttons/buttons.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { TimeFormatPipe } from './pipes/time-format/time-format.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     ConfirmDeleteComponent,
     ExpenceComponent,
     DateFormatPipe,
+    TimeFormatPipe,
   ],
   imports: [
     BrowserModule,

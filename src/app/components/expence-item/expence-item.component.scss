@@ -27,13 +27,18 @@
       }
       .title-wrapper {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
 
         .name {
           font-size: 20px;
           font-weight: 700;
           margin-left: 10px;
+        }
+        .time-info{
+          margin: 5px 0 0 10px;
+          font-size: 14px;
+          font-weight: 700;
+          color: grey;
         }
       }
     }

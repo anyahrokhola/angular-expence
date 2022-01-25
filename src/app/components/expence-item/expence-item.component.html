@@ -2,25 +2,26 @@
   <div class="wrapper">
     <div class="info-text">
       <div class="category-wrapper">
-        <app-category-view [categoryId]="item.categoryId"></app-category-view>
+          <app-category-view [categoryId]="item.categoryId"></app-category-view>
       </div>
       <div class="title-wrapper">
         <span class="name">{{ item.name }}</span>
+        <span class="time-info" >{{item.date | timeFormat}}</span>
       </div>
     </div>
     <div class="action-wrapper">
       <span class="price"> -${{ item.price }}</span>
       <div class="actions">
         <app-tooltip text="Edit this item">
-        <app-btn-icon (click)="editItem()">
+          <app-btn-icon (click)="editItem()">
             <img src="../assets/edit.png" />
-        </app-btn-icon>
-      </app-tooltip>
-      <app-tooltip text="Delete this item">
-        <app-btn-icon (click)="removeItem()">  
-            <img src="../assets/delete.png"/>
-        </app-btn-icon>
-      </app-tooltip>
+          </app-btn-icon>
+        </app-tooltip>
+        <app-tooltip text="Delete this item">
+          <app-btn-icon (click)="removeItem()">
+            <img src="../assets/delete.png" />
+          </app-btn-icon>
+        </app-tooltip>
       </div>
     </div>
   </div>

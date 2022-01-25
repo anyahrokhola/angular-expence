@@ -36,23 +36,27 @@ export class AddExpenceComponent implements OnInit {
   ngOnInit() {}
 
   addExpence() {
-    const { name, price, categoryId, date } = this.fullNameControl.value;
+    const { name, price, categoryId} = this.fullNameControl.value;
+    const date = new Date(this.fullNameControl.value.date);
 
+    console.log('this.fullNameControl.value.date',this.fullNameControl.value.date);
     const newExpence: Partial<Expence> = {
       name: name,
       price: Number(price),
       categoryId: categoryId,
-      date: date,
+      date: date
     };
 
-    console.log('date', date);
+    console.log('newExpence before closed',newExpence);
 
+    console.log('date', date);
+    console.log('typeof date', typeof date);
     this.fullNameControl.markAllAsTouched();
 
     if (this.fullNameControl.valid) {
       this.ref.close(newExpence);
     }
 
-    console.log(newExpence);
+    console.log('newExpence after closed',newExpence);
   }
 }
