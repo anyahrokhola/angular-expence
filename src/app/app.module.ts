@@ -12,13 +12,16 @@ import { ExpenceListComponent } from './components/expence-list/expence-list.com
 import { ExpenceItemComponent } from './components/expence-item/expence-item.component';
 import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
 import { ExpenceComponent } from './components/expence/expence.component';
-import { CategoryModule } from './modules/category/category.module'
+import { CategoryModule } from './modules/category/category.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from './modules/modal/modal.module';
 import { ButtonModule } from './modules/buttons/buttons.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { TimeFormatPipe } from './pipes/time-format/time-format.pipe';
+import { InputsModule } from './modules/inputs/inputs.module';
+import { InputTextComponent } from './modules/inputs/components/input-text/input-text.component';
+import { IconBackgroundColorPipe } from './pipes/icon-background-color/icon-background-color.pipe';
 
 @NgModule({
   declarations: [
@@ -38,17 +41,18 @@ import { TimeFormatPipe } from './pipes/time-format/time-format.pipe';
     DialogModule.forRoot({
       minHeight: 300,
       width: 600,
-      maxHeight: '80%'
+      maxHeight: '80%',
     }),
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     CategoryModule,
     NgSelectModule,
     ModalModule,
     ButtonModule,
-    SharedModule
+    SharedModule,
+    InputsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

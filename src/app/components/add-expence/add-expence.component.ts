@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../modules/category/interfaces/category';
 import { CategoryService } from '../../modules/category/services/category.service';
 import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
+import { SelectOption } from 'src/app/modules/inputs/interfaces/select-option';
 
 @Component({
   selector: 'app-add-expence',
@@ -14,12 +15,13 @@ import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-
 export class AddExpenceComponent implements OnInit {
   public data: Expence[] = [];
   public isEdit = !!this.ref.data;
+  public options: SelectOption[] = [];
 
   fullNameControl = new FormGroup({
     name: new FormControl(this.ref.data?.name, Validators.required),
     price: new FormControl(this.ref.data?.price, [
       Validators.required,
-      Validators.pattern('^[0-9]*$'),
+      Validators.min(1)
     ]),
     categoryId: new FormControl(this.ref.data?.categoryId),
     date: new FormControl(this.ref.data?.date || new Date()),
@@ -39,7 +41,16 @@ export class AddExpenceComponent implements OnInit {
     public expenceService: ExpenceServiceService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.options = this.categoryService.categories.map(category => {
+      return {
+        id: category.id,
+        name: category.name,
+        icon: category.icon,
+        iconColor: category.color
+      }
+    })
+  }
 
   addExpence() {
     let newExpence: Expence;

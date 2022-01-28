@@ -12,6 +12,7 @@ import { ModalModule } from '../modal/modal.module';
 import { ButtonModule } from '../buttons/buttons.module';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryColorComponent } from './components/category-color/category-color.component';
+import { IconBackgroundColorPipe } from 'src/app/pipes/icon-background-color/icon-background-color.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CategoryColorComponent } from './components/category-color/category-col
     CategoryIconsComponent,
     CategoryIconPickerComponent,
     CategoryViewComponent,
-    CategoryColorComponent
+    CategoryColorComponent,
+    IconBackgroundColorPipe,
   ],
   imports: [
     FormsModule, 
@@ -34,7 +36,8 @@ import { CategoryColorComponent } from './components/category-color/category-col
   ],
   providers: [],
   exports:[
-    CategoryViewComponent
+    CategoryViewComponent,
+    IconBackgroundColorPipe
   ]
 })
 export class CategoryModule { }

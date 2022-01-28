@@ -1,7 +1,18 @@
 <app-tooltip text="{{ category.name }}">
-  <div class="wrapper-list">
-    <span class="icon"
-      ><i [class]="category.icon" [ngStyle]="{ color: category.color }"></i
-    ></span>
+  <div
+    class="category-wrapper"
+    [ngStyle]="{ background: category.color | iconBackgroundColor }"
+  >
+    <div class="wrapper-list">
+      <span class="icon"
+        ><i
+          [class]="category.icon"
+          [ngStyle]="{
+            color: category.color,
+            background: category.color | iconBackgroundColor
+          }"
+        ></i
+      ></span>
+    </div>
   </div>
 </app-tooltip>

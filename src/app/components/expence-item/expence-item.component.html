@@ -1,9 +1,7 @@
 <div class="container">
   <div class="wrapper">
     <div class="info-text">
-      <div class="category-wrapper">
           <app-category-view [categoryId]="item.categoryId"></app-category-view>
-      </div>
       <div class="title-wrapper">
         <span class="name">{{ item.name }}</span>
         <span class="time-info" >{{item.date | timeFormat}}</span>
