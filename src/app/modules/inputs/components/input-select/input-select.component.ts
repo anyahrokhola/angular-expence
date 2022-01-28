@@ -16,6 +16,7 @@ import { SelectOption } from '../../interfaces/select-option';
 })
 export class InputSelectComponent implements ControlValueAccessor {
   @Input() options: SelectOption[];
+  @Input() placeholder: string = 'Choose element';
 
   onChange: any = () => {};
   onTouch: any = () => {};

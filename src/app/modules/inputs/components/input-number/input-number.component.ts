@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -16,6 +16,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class InputNumberComponent implements ControlValueAccessor {
   public validationNumber = /^[0-9]*$/;
   public valNumber: number;
+
+  @Input() placeholder: string = 'Enter amount'
 
   public isValid: boolean = true;
 

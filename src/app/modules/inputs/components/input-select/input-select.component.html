@@ -1,8 +1,8 @@
 <div class="form-group">
   <span> <ng-content></ng-content></span>
-<ng-select class="form-field" (change)="handleInput($event)">
+<ng-select class="form-field" [placeholder]="placeholder" (change)="handleInput($event)">
   <ng-option *ngFor="let option of options" [value]="option.id"
-    ><i *ngIf="option.icon" [class]="option.icon" [ngStyle]="{ color: option.iconColor }"></i
+    ><i *ngIf="option.icon" [class]="option.icon" [ngStyle]="{ color: option.iconColor, background: option.iconColor | iconBackgroundColor }"></i
     >{{ option.name }}
   </ng-option>
 </ng-select>

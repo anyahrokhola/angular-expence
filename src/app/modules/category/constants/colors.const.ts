@@ -3,11 +3,11 @@ export const colors = [
     'blue',
     'green',
     'red',
-    'yellow',
+    '#e6e600',
     'purple',
     'grey',
     'orange',
-    'lime',
+    '#00cc00',
     'teal',
 ] as const
 
@@ -20,10 +20,10 @@ export const backgroundColors: BackgroundColors = {
     blue: '#ADD8E6',
     green: '#98FB98',
     red: '#FFE4E1',
-    yellow: '#FFFFE0',
+    '#e6e600': '#FFFFE0',
     purple: '#F9B7FF',
     grey: '#E5E4E2',
     orange: '#FAEBD7',
-    lime: '#CCFB5D',
+    '#00cc00': '#ccffcc',
     teal: '#8EEBEC'
 }

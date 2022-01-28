@@ -1,4 +1,4 @@
 <div class="form-group">
   <span> <ng-content></ng-content></span>
-    <input class="form-field" type="text" placeholder="Enter to date" [value]="val" (input)="handleInput($event)">
+    <input class="form-field" type="text" [placeholder]="placeholder" [value]="val" (input)="handleInput($event)">
 </div>

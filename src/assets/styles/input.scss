@@ -8,6 +8,7 @@
         white-space: nowrap;
         display: block;
         margin: 0 10px;
+        min-height: 33px;
         &:not(:first-child):not(:last-child) {
             border-radius: 0;
         }
@@ -30,8 +31,11 @@
         margin-bottom: 0;
     }
     & > span {
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 8px 11px;
+        min-width: 60px;
         font-size: 14px;
         line-height: 25px;
         color: #7dc653;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DialogRef } from '@ngneat/dialog';
 
@@ -15,6 +15,8 @@ import { DialogRef } from '@ngneat/dialog';
   ],
 })
 export class InputTextComponent implements ControlValueAccessor {
+  @Input() placeholder: string = 'Type hear';
+
   onChange: any = () => {};
   onTouch: any = () => {};
 
