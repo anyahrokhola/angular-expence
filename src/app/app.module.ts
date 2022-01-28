@@ -17,11 +17,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from './modules/modal/modal.module';
 import { ButtonModule } from './modules/buttons/buttons.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { DateFormatPipe } from './pipes/date-format.pipe';
-import { TimeFormatPipe } from './pipes/time-format/time-format.pipe';
 import { InputsModule } from './modules/inputs/inputs.module';
-import { InputTextComponent } from './modules/inputs/components/input-text/input-text.component';
-import { IconBackgroundColorPipe } from './pipes/icon-background-color/icon-background-color.pipe';
+import { PipeModule } from './modules/pipe/pipe.module';
 
 @NgModule({
   declarations: [
@@ -33,8 +30,6 @@ import { IconBackgroundColorPipe } from './pipes/icon-background-color/icon-back
     ExpenceItemComponent,
     ConfirmDeleteComponent,
     ExpenceComponent,
-    DateFormatPipe,
-    TimeFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +46,7 @@ import { IconBackgroundColorPipe } from './pipes/icon-background-color/icon-back
     ButtonModule,
     SharedModule,
     InputsModule,
+    PipeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

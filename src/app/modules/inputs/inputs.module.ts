@@ -5,6 +5,7 @@ import { InputDateComponent } from './components/input-date/input-date.component
 import { InputNumberComponent } from './components/input-number/input-number.component';
 import { InputSelectComponent } from './components/input-select/input-select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PipeModule } from '../pipe/pipe.module';
 
 
 
@@ -13,6 +14,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
   imports: [
     BrowserModule,   
     NgSelectModule, 
+    PipeModule
   ],
   exports:[
     InputTextComponent,
