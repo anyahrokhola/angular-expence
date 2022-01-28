@@ -1,12 +1,26 @@
 .wrapper {
-  position: relative;
   display: flex;
   align-items: center;
+  position: relative;
   flex-direction: column;
+  padding: 10px;
+  overflow-x: hidden;
+  
 
   .form-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+
+    &:first-child{
+      margin: 20px 0;
+    }
+
+    &:last-child{
+      margin-top: 40px;
+    }
 
     .name{
       margin: 0 6px;
@@ -14,7 +28,7 @@
 
     .error-block{
       position: absolute;
-      bottom: 0;
+      bottom: -20px;
     }
   }
 
@@ -30,9 +44,7 @@
   }
 
   .expence {
-    padding: 20px 15px;
-    border: 1px solid red;
-    margin: 30px 0;
+    padding: 0 30px;
 
     span {
       color: red;
@@ -44,11 +56,6 @@
   }
 }
 
-.select ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items {
-  max-height: 110px;
-  width: 100%;
-}
-
 .ng-select {
-  width: 100%;
+  width: 160px;
 }

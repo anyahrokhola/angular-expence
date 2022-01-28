@@ -1,23 +1,28 @@
 <app-modal-main>
-  <div class="name" slot="header">Add salary</div>
+  <div class="title" slot="header">Add salary</div>
   <div class="wrapper-form" slot="body">
-    <div class="salary">
-      <input type="text" [formControl]="priceControl" />
-      <span
-        *ngIf="
-          priceControl.invalid && (priceControl.dirty || priceControl.touched)
-        "
-      >
+    <div class="name">Pleaese, add money to your budget</div>
+    
+    <div class="salary" >
+      <app-input-number [formControl]="priceControl">
+        <span >Salary</span>
+      </app-input-number>
+      
+      <span *ngIf="priceControl.invalid && (priceControl.dirty || priceControl.touched)"
+>
         <div *ngIf="priceControl?.errors?.['required']">
           <span class="error">Please enter to date</span>
         </div>
-        <div *ngIf="priceControl?.errors?.['pattern']">
-          <span class="error">Please enter to number</span>
+        <div *ngIf="priceControl?.errors?.['min']">
+          <span class="error">Price cannot be less than zero</span>
         </div>
       </span>
     </div>
   </div>
   <div slot="footer">
+    <app-btn-negative class="m-r-auto" (click)="ref.close()">
+      <span slot="button">Close</span>
+    </app-btn-negative>
     <app-btn-positive (click)="addSalaryValue()">
       Add
     </app-btn-positive>

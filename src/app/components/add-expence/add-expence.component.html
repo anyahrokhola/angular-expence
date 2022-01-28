@@ -3,8 +3,7 @@
   <div class="wrapper" slot="body">
     <div class="expence" [formGroup]="fullNameControl">
       <div class="form-wrapper">
-          <div class="name">Name:</div>
-          <input type="text" formControlName="name" />
+        <app-input-text formControlName="name"> Name </app-input-text>
         <div class="error-block">
           <span
             *ngIf="
@@ -16,20 +15,9 @@
             </div>
           </span>
         </div>
-        <div class="name">Category:</div>
-        <ng-select formControlName="categoryId" class="select">
-          <ng-option
-            *ngFor="let item of categoryService.categories"
-            [value]="item.id"
-            ><i [class]="item.icon" [ngStyle]="{ color: item.color }"></i
-            >{{ item.name }}</ng-option
-          >
-        </ng-select>
-      </div>
 
-      <div class="form-wrapper">
-        <div class="name">Amount:</div>
-        <input type="text" formControlName="price" />
+        <app-input-number formControlName="price"> Amount </app-input-number>
+
         <div class="error-block amount">
           <span
             *ngIf="
@@ -40,13 +28,19 @@
             <div *ngIf="priceControl?.errors?.['required']">
               <span class="error-amount">Please enter to date</span>
             </div>
-            <div *ngIf="priceControl?.errors?.['pattern']">
-              <span class="error-amount">Please enter to number</span>
+            <div *ngIf="priceControl?.errors?.['min']">
+              <span class="error">Price cannot be less than zero</span>
             </div>
           </span>
         </div>
-        <div class="name">Date:</div>
-        <input type="date" formControlName="date" />
+      </div>
+
+      <div class="form-wrapper">
+        <app-input-select formControlName="categoryId" [options]="options">
+          Category
+        </app-input-select>
+
+        <app-input-date formControlName="date"> Date </app-input-date>
       </div>
     </div>
   </div>

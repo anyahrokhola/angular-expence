@@ -11,10 +11,9 @@ import { SalaryService } from '../../servises/salary.service';
 })
 export class AddSalaryComponent implements OnInit {
   
-  priceControl = new FormControl('',[Validators.required,
-    Validators.pattern("^[0-9]*$")]);
+  priceControl = new FormControl('',[Validators.required, Validators.min(1)]);
 
-  constructor(private ref: DialogRef){}
+  constructor(public ref: DialogRef){}
 
   ngOnInit(): void {
   }
@@ -23,7 +22,8 @@ export class AddSalaryComponent implements OnInit {
     this.priceControl.markAllAsTouched();
 
     if (this.priceControl.valid) {
-      this.ref.close(Number(this.priceControl.value));
+      this.ref.close(this.priceControl.value);
     } 
+    console.log(this.priceControl.value);
   }
 }

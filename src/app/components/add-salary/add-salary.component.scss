@@ -4,16 +4,10 @@
   align-items: center;
   flex-direction: column;
 
-  input {
-    margin: 10px 0;
-  }
-
   .salary {
-    padding: 10px 15px;
     margin: 30px 0;
-    border: 1px solid green;
     .error {
-      position: absolute;
+      margin-top: 10px;
       bottom: 0;
       color: red;
     }
