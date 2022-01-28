@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryColorComponent } from './components/category-color/category-color.component';
 import { IconBackgroundColorPipe } from 'src/app/modules/pipe/icon-background-color/icon-background-color.pipe';
 import { PipeModule } from '../pipe/pipe.module';
+import { InputsModule } from '../inputs/inputs.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PipeModule } from '../pipe/pipe.module';
     ModalModule,
     ButtonModule,
     SharedModule,
-    PipeModule
+    PipeModule,
+    InputsModule
   ],
   providers: [],
   exports:[

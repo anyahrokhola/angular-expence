@@ -9,8 +9,9 @@
         <span class="error">Please choose an icon</span> 
       </div>
     </span>
-    <span>Enter name category</span>
-    <input type="text" [formControl]="nameControl">
+    <app-input-text [formControl]="nameControl">
+      Category
+    </app-input-text>
     <span *ngIf="nameControl.invalid && (nameControl.dirty ||nameControl.touched)">
       <div *ngIf="nameControl?.errors?.['required']">
         <span class="error">Please enter to date</span> 
