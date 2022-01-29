@@ -8,11 +8,13 @@ export class DateFormatPipe implements PipeTransform {
     const year = value.getFullYear();
     const month = this.getMonthName(value.getMonth());
     const day = value.getDate();
+     
+    const nameDay = this.getDayName(value.getDay());
 
-    if(this.isToday(value)) return 'Today';
-    if(this.isYestarday(value)) return 'Yestarday';
+    if(this.isToday(value)) return `Today (${nameDay})`;
+    if(this.isYestarday(value)) return `Yestarday (${nameDay})` ;
     
-    return `${day} ${month} ${year}`;
+    return `${day} ${month} ${year} (${nameDay})`;
   }
 
   private getMonthName(month: number): string {
@@ -44,6 +46,29 @@ export class DateFormatPipe implements PipeTransform {
       default:
         return '';
     }
+  }
+
+  private getDayName(day: number): string{
+    console.log(day);
+    switch (day) {
+      case 0:
+        return 'Sunday';
+      case 1:
+        return 'Monday';
+      case 2:
+        return 'Tuesday';
+      case 3:
+        return 'Wednesday';
+      case 4:
+        return 'Thursday';
+      case 5:
+        return 'Friday';
+      case 6:
+        return 'Saturday';
+      default:
+        return '';
+    }
+    
   }
 
   private isToday(date: Date): boolean {
