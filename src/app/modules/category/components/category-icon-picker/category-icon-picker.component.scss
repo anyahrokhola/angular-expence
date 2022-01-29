@@ -1,10 +1,21 @@
-button {
+.icon-picker {
+  margin: 10px 0;
+  min-width: 60px;
+  height: auto;
+  padding: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #888;
   cursor: pointer;
-  padding: 5px 7px;
-  background-color: white;
-  border: 1px solid black;
   transition: 150ms;
+  color: #7dc653;
+  font-weight: 700;
+
+  i{
+    font-size: 18px;
+  }
+
   &:hover {
-    background-color: #eee;
+    background-color: #7dc653;;
+    color: white;
   }
 }

@@ -1,17 +1,21 @@
 <app-modal-main>
-  <span class="title" slot="header">Enter new category</span>
+  <span slot="header">Enter new category</span>
 <div class="container" slot="body">
+  <span class="title" >Choose icon category</span>
   <div class="form-category">
-    <span>Choose icon category</span>
-    <app-category-icon-picker class="icon-picker" [formControl]="iconControl"></app-category-icon-picker>
+
+    <app-category-icon-picker [formControl]="iconControl"></app-category-icon-picker>
+
     <span *ngIf="iconControl.invalid && (iconControl.dirty ||iconControl.touched)">
-      <div *ngIf="iconControl?.errors?.['required']">
-        <span class="error">Please choose an icon</span> 
+      <div class="error" *ngIf="iconControl?.errors?.['required']">
+        <span >Please choose an icon</span> 
       </div>
     </span>
-    <app-input-text [formControl]="nameControl">
+
+    <app-input-text placeholder='Enter name category' [formControl]="nameControl">
       Category
     </app-input-text>
+
     <span *ngIf="nameControl.invalid && (nameControl.dirty ||nameControl.touched)">
       <div *ngIf="nameControl?.errors?.['required']">
         <span class="error">Please enter to date</span> 

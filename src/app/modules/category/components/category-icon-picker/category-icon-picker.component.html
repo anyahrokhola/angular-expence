@@ -1,4 +1,4 @@
-<button [disabled]="disabled" (click)="addIcon()">
-  <i *ngIf="icon?.icon" [class]="icon.icon" [ngStyle]="{ color: icon.color, background: icon.color | iconBackgroundColor }"></i>
-  <span *ngIf="!icon?.icon">Icons</span>
-</button>
+  <button class="icon-picker" [disabled]="disabled" [ngStyle]="{background: icon?.color | iconBackgroundColor}" (click)="addIcon()">
+    <i *ngIf="icon?.icon" [class]="icon.icon" [ngStyle]="{ color: icon.color}"></i>
+    <span *ngIf="!icon?.icon">Icon</span>
+  </button>
