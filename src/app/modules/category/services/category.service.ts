@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { BehaviorSubject } from 'rxjs';
+import { ConfirmDeleteComponent } from 'src/app/components/confirm-delete/confirm-delete.component';
 import { AddCategoryComponent } from '../components/add-category/add-category.component';
 import { Category } from '../interfaces/category';
 
@@ -41,9 +42,17 @@ export class CategoryService {
   }
 
   removeCategory(category: Category) {
-    this.categories = this.categories.filter((item) => item.id != category.id);
-    this.categories$.next(this.categories);
-    this.saveCategories();
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+
+    dialogRef.afterClosed$.subscribe((result) => {
+      if (result) {
+        this.categories = this.categories.filter(
+          (item) => item.id != category.id
+        );
+        this.categories$.next(this.categories);
+        this.saveCategories();
+      }
+    });
   }
 
   editCategory(item: Category, i: number) {
