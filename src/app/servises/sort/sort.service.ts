@@ -17,7 +17,6 @@ export class SortService {
         }
       }
     }
-    console.log('arr', arr);
     return arr;
   }
 }

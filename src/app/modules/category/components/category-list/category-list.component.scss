@@ -12,11 +12,12 @@ ul {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    padding: 0 10px;
+    padding: 0 18px;
     font-weight: 700;
+    text-transform: capitalize;
 
     .title-action{
-      margin-right: 20px;
+      margin-right: 13px;
     }
   }
 

@@ -17,8 +17,8 @@
     </app-input-text>
 
     <span *ngIf="nameControl.invalid && (nameControl.dirty ||nameControl.touched)">
-      <div *ngIf="nameControl?.errors?.['required']">
-        <span class="error">Please enter to date</span> 
+      <div class="error" *ngIf="nameControl?.errors?.['required']">
+        <span >Please enter to date</span> 
       </div>
       </span>
   </div>
