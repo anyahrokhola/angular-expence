@@ -1,5 +1,8 @@
 <div class="group" *ngFor="let group of groupedList">
-  <span>{{ group.date | dateFormat }}</span>
+  <div class="date-wrapper">
+    <span class="date">{{ group.date | dateFormat }}</span>
+    <span class="day">({{ group.date | dateDay }})</span>
+  </div>
   <ul>
     <li *ngFor="let item of group.expences; index as i" class="loggs">
       <app-expence-item [item]="item" class="item"></app-expence-item>

@@ -2,6 +2,16 @@
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 350px;
+  padding-top: 20px;
+}
+
+.date-wrapper{
+  display: flex;
+
+  .day{
+    margin-left: 10px;
+    color: #888;
+  }
 }
 
 ul {
