@@ -69,19 +69,19 @@ li {
       display: flex;
       flex-direction: column;
       margin: 30px 0 10px;
+     
 
       .item-title {
+        position: relative;
         font-size: 24px;
         font-weight: 700;
         text-align: center;
         padding-bottom: 20px;
+        border-bottom: 1px solid rgba(#ccc, 0.5);
       }
-
-      .title-expence{
+      .title-expence {
         padding: 10px 0;
-            text-shadow: 1px 1px 3px #888;
       }
-
     }
   }
 
