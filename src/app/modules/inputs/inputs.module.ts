@@ -6,6 +6,7 @@ import { InputNumberComponent } from './components/input-number/input-number.com
 import { InputSelectComponent } from './components/input-select/input-select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipeModule } from '../pipe/pipe.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { PipeModule } from '../pipe/pipe.module';
   imports: [
     BrowserModule,   
     NgSelectModule, 
-    PipeModule
+    PipeModule,
+    SharedModule
   ],
   exports:[
     InputTextComponent,

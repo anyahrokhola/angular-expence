@@ -11,10 +11,10 @@
       <span *ngIf="priceControl.invalid && (priceControl.dirty || priceControl.touched)"
 >
         <div *ngIf="priceControl?.errors?.['required']">
-          <span class="error">Please enter to date</span>
+          <app-error></app-error>
         </div>
         <div *ngIf="priceControl?.errors?.['min']">
-          <span class="error">Price cannot be less than zero</span>
+          <app-error text="Price cannot be less than zero"></app-error>
         </div>
       </span>
     </div>

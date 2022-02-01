@@ -21,7 +21,7 @@ export class AddExpenceComponent implements OnInit {
     name: new FormControl(this.ref.data?.name, Validators.required),
     price: new FormControl(this.ref.data?.price, [
       Validators.required,
-      Validators.min(1)
+      Validators.min(1),
     ]),
     categoryId: new FormControl(this.ref.data?.categoryId),
     date: new FormControl(this.ref.data?.date || new Date()),
@@ -42,14 +42,14 @@ export class AddExpenceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.options = this.categoryService.categories.map(category => {
+    this.options = this.categoryService.categories.map((category) => {
       return {
         id: category.id,
         name: category.name,
         icon: category.icon,
-        iconColor: category.color
-      }
-    })
+        iconColor: category.color,
+      };
+    });
   }
 
   addExpence() {
@@ -66,7 +66,6 @@ export class AddExpenceComponent implements OnInit {
         newExpence = {
           ...this.ref.data,
           ...this.fullNameControl.value,
-          
         };
       }
       this.ref.close(newExpence);

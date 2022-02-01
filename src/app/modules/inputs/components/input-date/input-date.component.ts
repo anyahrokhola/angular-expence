@@ -22,8 +22,8 @@ export class InputDateComponent implements ControlValueAccessor {
 
   val = '';
 
-  writeValue(value: any) {
-    this.val = value;
+  writeValue(value: Date) {
+    this.val = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
   }
 
   registerOnChange(fn: any) {
@@ -36,8 +36,7 @@ export class InputDateComponent implements ControlValueAccessor {
 
   handleInput($event): void {
     this.val = $event.target.value;
-    this.onChange(this.val);
+    this.onChange(new Date(this.val));
     this.onTouch();
-    console.log(this.val)
   }
 }

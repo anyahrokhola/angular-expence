@@ -17,6 +17,7 @@ import { DialogRef } from '@ngneat/dialog';
 export class InputTextComponent implements ControlValueAccessor {
   @Input() placeholder: string = 'Type hear';
 
+
   onChange: any = () => {};
   onTouch: any = () => {};
 

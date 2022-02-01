@@ -34,7 +34,7 @@ export class AppComponent {
   }
 
   addExpence() {
-    this.expenceService.addExpence();
+    this.expenceService.add();
   }
 
   getBudget(): number {

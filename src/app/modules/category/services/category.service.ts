@@ -56,7 +56,6 @@ export class CategoryService {
   }
 
   editCategory(item: Category, i: number) {
-    console.log({ ...item });
     const dialogRef = this.dialog.open(AddCategoryComponent, {
       data: {
         ...item,

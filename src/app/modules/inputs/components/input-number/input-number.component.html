@@ -1,7 +1,9 @@
 <div class="form-group">
   <span> <ng-content></ng-content></span>
     <input class="form-field" type="text" [placeholder]="placeholder" [value]="valNumber" (input)="handleInput($event)">
-    <div *ngIf="!isValid" class="error-wrapper">
-      <span class="error">Please enter to number</span>
+    <div *ngIf="!isValid">
+      <app-error text="Please, enter the number">
+
+      </app-error>
   </div>
 </div>

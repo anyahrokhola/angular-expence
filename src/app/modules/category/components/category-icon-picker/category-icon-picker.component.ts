@@ -54,7 +54,6 @@ export class CategoryIconPickerComponent
     dialogRef.afterClosed$.subscribe((result: IconData) => {
       this.icon = result;
       this.onChange(result);
-      console.log(result);
     });
   }
 }

@@ -18,7 +18,6 @@ export class CategoryListComponent implements OnInit {
   constructor(private dialog: DialogService, public ref: DialogRef, public categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    console.log(this.categoryService.categories);
   }
 
   openAddCategory(){

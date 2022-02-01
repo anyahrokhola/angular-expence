@@ -13,7 +13,7 @@ import { SalaryService } from '../../servises/salary.service';
 export class BalanceComponent implements OnInit {
   @Input() budget!: number;
   
-  public expences: Expence[] = [];
+  private expences: Record<string, Expence[]> = {};
   public isNegative: Boolean = false;
   public balance: number = 0;
 

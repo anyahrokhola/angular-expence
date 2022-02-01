@@ -6,19 +6,30 @@ import { ConfirmDeleteComponent } from 'src/app/components/confirm-delete/confir
 import { Expence } from 'src/app/interfaces/expence';
 import { SalaryService } from '../salary.service';
 
+// type Data = Record<string, Expence[]>
+
+interface Data {
+  [key: string]: Expence[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class ExpenceServiceService {
-  public expences$ = new BehaviorSubject<Expence[]>([]);
+  public expences$ = new BehaviorSubject<Data>({});
 
-  constructor(private dialog: DialogService, private salary: SalaryService) {
+  constructor(private dialog: DialogService) {
     const json = localStorage.getItem('expences');
 
     if (json) {
-      const expences = JSON.parse(json);
+      const expences: Data = JSON.parse(json);
+      const keys = Object.keys(expences);
+      const data: Data = {};
 
-      const data = expences.map(item => this.getExpence(item));
+      keys.forEach((key) => {
+        data[key] = expences[key].map((item) => this.getExpence(item));
+      });
+
       this.expences$.next(data);
     }
 
@@ -26,13 +37,20 @@ export class ExpenceServiceService {
   }
 
   createExpence(item: Omit<Expence, 'id'>): Expence {
-    const expence: Expence = this.getExpence({ ...item, id: this.getIdExpence()});
-    this.expences$.next([...this.expences$.value, expence]);
+    const expence: Expence = this.getExpence({
+      ...item,
+      id: this.getIdExpence(),
+    });
+
+    const key = this.getDate(expence.date);
+    const data = this.addExpence(expence);
+
+    this.expences$.next({ ...this.expences$.value, [key]: data });
 
     return expence;
   }
 
-  updateExpence(item: Expence, newData: Expence): Expence{
+  updateExpence(item: Expence, newData: Expence): Expence {
     return {
       ...item,
       ...this.getExpence(newData),
@@ -40,37 +58,41 @@ export class ExpenceServiceService {
   }
 
   getIdExpence(): number {
+    const keys = Object.keys(this.expences$.value);
+
     let max: number = 0;
 
-    for (let i = 0; i < this.expences$.value.length; i++) {
-      if (max < this.expences$.value[i].id) {
-        max = this.expences$.value[i].id;
-      }
-    }
+    keys.forEach((key) => {
+      this.expences$.value[key].forEach((expence) => {
+        if (max < expence.id) {
+          max = expence.id;
+        }
+      });
+    });
 
     return max + 1;
   }
 
-  addExpence() {
+  add() {
     this.dialog.open(AddExpenceComponent);
   }
 
   remove(item: Expence) {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+    const key = this.getDate(item.date);
 
     dialogRef.afterClosed$.subscribe((result) => {
       if (result) {
-        const data = [...this.expences$.value];
-        const i = this.findIndex(item.id);
+        const data = this.removeExpence(item);
 
-        data.splice(i, 1);
-
-        this.expences$.next([...data]);
+        this.expences$.next({ ...this.expences$.value, [key]: data });
       }
     });
   }
 
   edit(item: Expence) {
+    const key = this.getDate(item.date);
+
     const dialogRef = this.dialog.open(AddExpenceComponent, {
       data: {
         ...item,
@@ -79,28 +101,64 @@ export class ExpenceServiceService {
 
     dialogRef.afterClosed$.subscribe((result: Expence | null) => {
       if (result) {
-        const data = [...this.expences$.value];
-        const i = this.findIndex(item.id);
-        data[i] = this.getExpence(result);
-        this.expences$.next([...data]);
+        const newItem = this.getExpence(result);
+        const newKey = this.getDate(newItem.date);
+
+        if (key === newKey) {
+          const data = [...this.expences$.value[key]];
+          const i = data.findIndex((el) => el.id === item.id);
+
+          data[i] = newItem;
+
+          this.expences$.next({ ...this.expences$.value, [key]: data });
+        }
+        else{
+          const data = this.removeExpence(item);
+          const newData = this.addExpence(newItem);
+
+          this.expences$.next({ ...this.expences$.value, [key]: data, [newKey]: newData });
+        }
       }
     });
   }
 
-  getExpence(item: Expence): Expence{
+  getExpence(item: Expence): Expence {
     return {
       ...item,
       price: Number(item.price),
-      date: new Date(item.date)
-    }
+      date: new Date(item.date),
+    };
+  }
+  
+  public getDate(date: Date) {
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   }
 
-  private findIndex(id: number): number{
-    return this.expences$.value.findIndex((el) => el.id === id);
-  }
-
-  private saveExpences(expences: Expence[]) {
-    const jsonData = JSON.stringify([...expences]);
+  private saveExpences(expences: Data) {
+    const jsonData = JSON.stringify(expences);
     localStorage.setItem('expences', jsonData);
+  }
+
+  private addExpence(item: Expence): Expence[] {
+    const key = this.getDate(item.date);
+    let data = this.expences$.value[key];
+
+    if (data) {
+      data.push(item);
+    } else {
+      data = [item];
+    }
+
+    return [...data];
+  }
+
+  private removeExpence(item: Expence): Expence[] {
+    const key = this.getDate(item.date);
+    const data = this.expences$.value[key];
+    const i = data.findIndex((el) => el.id === item.id);
+
+    data.splice(i, 1);
+
+    return [...data];
   }
 }

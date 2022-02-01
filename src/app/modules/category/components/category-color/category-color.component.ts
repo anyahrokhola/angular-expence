@@ -40,7 +40,5 @@ export class CategoryColorComponent implements OnInit, ControlValueAccessor {
     this.value = color;
     this.onTouch();
     this.onChange(color);
-    console.log(color);
   }
-
 }

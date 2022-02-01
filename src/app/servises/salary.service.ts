@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { Expence } from '../interfaces/expence';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SalaryService {
+  constructor() {}
 
-  constructor() { }
-
-  getExpenceSum(expences: Expence[]): number{
+  getExpenceSum(expences: Record<string, Expence[]>): number {
     let sum = 0;
 
-    for (let i = 0; i < expences.length; i++) {
-      sum += expences[i].price;
-    }
+    const keys = Object.keys(expences);
+    keys.forEach((key) => {
+      expences[key].forEach((expence) => {
+        sum += expence.price;
+      });
+    });
+
     return sum;
   }
 }

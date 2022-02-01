@@ -24,6 +24,5 @@ export class AddSalaryComponent implements OnInit {
     if (this.priceControl.valid) {
       this.ref.close(this.priceControl.value);
     } 
-    console.log(this.priceControl.value);
   }
 }
