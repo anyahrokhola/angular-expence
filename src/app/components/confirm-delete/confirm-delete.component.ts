@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DialogRef, DialogService } from '@ngneat/dialog';
-import { Expence } from '../../interfaces/expence';
+import { Component, OnInit} from '@angular/core';
+import { DialogRef} from '@ngneat/dialog';
 
 @Component({
   selector: 'app-confirm-delete',

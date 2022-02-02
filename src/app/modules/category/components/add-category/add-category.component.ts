@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DialogRef, DialogService } from '@ngneat/dialog';
-import { CategoryIconsComponent } from '../category-icons/category-icons.component';
+import { Component, OnInit } from '@angular/core';
+import { DialogRef} from '@ngneat/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../interfaces/category';
 import { CategoryService } from '../../services/category.service';
@@ -32,7 +31,6 @@ export class AddCategoryComponent implements OnInit {
   }
 
   constructor(
-    private dialog: DialogService,
     public ref: DialogRef<Category | undefined>,
     private categoryService: CategoryService
   ) {}

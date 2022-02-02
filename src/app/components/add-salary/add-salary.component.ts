@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogRef } from '@ngneat/dialog';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-import { SalaryService } from '../../servises/salary.service';
+import { FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/modules/validation/validators/custom-validators';
 
 @Component({

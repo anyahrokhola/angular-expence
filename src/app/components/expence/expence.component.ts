@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
-import { Expence } from '../../interfaces/expence';
 import { SalaryService } from '../../servises/salary.service';
 
 @Component({

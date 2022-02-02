@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 import { AddExpenceComponent } from 'src/app/components/add-expence/add-expence.component';
 import { ConfirmDeleteComponent } from 'src/app/components/confirm-delete/confirm-delete.component';
 import { Expence } from 'src/app/interfaces/expence';
-import { SalaryService } from '../salary.service';
 
 // type Data = Record<string, Expence[]>
 

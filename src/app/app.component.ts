@@ -48,6 +48,6 @@ export class AppComponent {
   }
 
   openListCategory() {
-    const dialogRef = this.dialog.open(CategoryListComponent);
+    this.dialog.open(CategoryListComponent);
   }
 }

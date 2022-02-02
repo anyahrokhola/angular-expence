@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl} from '@angular/forms';
 import { DialogRef } from '@ngneat/dialog';
-import { backgroundColors } from '../../constants/colors.const';
 import { icons } from '../../constants/icons.const';
 import { IconData } from '../../interfaces/category';
 

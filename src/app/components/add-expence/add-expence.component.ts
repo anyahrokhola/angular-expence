@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DialogRef } from '@ngneat/dialog';
 import { Expence } from '../../interfaces/expence';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Category } from '../../modules/category/interfaces/category';
 import { CategoryService } from '../../modules/category/services/category.service';
 import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { SelectOption } from 'src/app/modules/inputs/interfaces/select-option';

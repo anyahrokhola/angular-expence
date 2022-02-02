@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DialogRef } from '@ngneat/dialog';
 import { colors } from '../../constants/colors.const';
 

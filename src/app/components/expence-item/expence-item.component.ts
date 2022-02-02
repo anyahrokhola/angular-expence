@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Category } from 'src/app/modules/category/interfaces/category';
+import { Component, Input } from '@angular/core';
 import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { Expence } from '../../interfaces/expence';
 

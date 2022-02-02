@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
-import { AppComponent } from '../../app.component';
 import { Expence } from '../../interfaces/expence';
 import { ColorService } from '../../servises/changeColor/color.service';
 import { SalaryService } from '../../servises/salary.service';

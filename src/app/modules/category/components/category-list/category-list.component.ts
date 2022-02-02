@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { DialogRef, DialogService } from '@ngneat/dialog';
 import { AddCategoryComponent } from '../add-category/add-category.component';
-import { Category } from '../../interfaces/category';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   openAddCategory(){
-    const dialogRef = this.dialog.open(AddCategoryComponent);
+    this.dialog.open(AddCategoryComponent);
   }
   
 }
