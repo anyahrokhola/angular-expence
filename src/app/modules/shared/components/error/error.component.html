@@ -1,3 +1,9 @@
-<div class="error-wrapper">
-    <span class="error">{{text}}</span>
+<div class="error-wrapper" *ngIf="error" [ngSwitch]="error">
+    <span  class="error" *ngSwitchCase="'required'">This field is required</span>
+    <span  class="error" *ngSwitchCase="'number'">Value should be a number</span>
+    <span  class="error" *ngSwitchCase="'email'">Email is not valid</span>
+    <span  class="error" *ngSwitchCase="'min'">Value can't be less than {{errors['min'].min}}</span>
+    <span  class="error" *ngSwitchCase="'max'">Value can't be more than {{errors['max'].max}}</span>
+    <span  class="error" *ngSwitchCase="'maxlength'">Value can't be more than {{errors['maxlength'].max}} sybmols</span>
+    <span  class="error" *ngSwitchCase="'minlength'">Value can't be less than {{errors['minlength'].min}} sybmols</span>
 </div>

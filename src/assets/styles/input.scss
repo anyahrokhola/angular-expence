@@ -1,3 +1,34 @@
+.error{
+    .form-group{
+        > span {
+            border-color: red;
+            background-color: red;
+            color: white;
+        }
+
+        &:focus-within {
+            & > span {
+                color: #fff;
+                background: red;
+                border-color: red;
+            }
+        }
+        .form-field{
+            border-color: red;
+            
+        }
+    }
+}
+
+.field-wrapper{
+    position: relative;
+    .error-wrapper{
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+}
+
 .form-group {
     display: flex;
     width: 100%;
@@ -41,7 +72,7 @@
         font-weight: 700;
         background: #eee;
         border: 1px solid #888;
-        transition: background .3s ease, border .3s ease, color .3s ease;
+        transition: background-color .3s ease, border .3s ease, color .3s ease;
     }
     &:focus-within {
         & > span {

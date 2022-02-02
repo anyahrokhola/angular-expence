@@ -1,16 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss']
 })
-export class ErrorComponent implements OnInit {
-  @Input() text: string = "Please, enter to data";
+export class ErrorComponent implements OnChanges {
+  @Input() errors: ValidationErrors | null;
+  public error: string | null = null;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    const keys = this.errors ? Object.keys(this.errors) : [];
+    this.error = keys[0];
   }
-
 }

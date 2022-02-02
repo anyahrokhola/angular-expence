@@ -1,30 +1,25 @@
 <app-modal-main>
-  <div class="title" slot="header">Add salary</div>
-  <div class="wrapper-form" slot="body">
-    <div class="name">Pleaese, add money to your budget</div>
-    
-    <div class="salary" >
-      <app-input-number [formControl]="priceControl">
-        <span >Salary</span>
-      </app-input-number>
-      
-      <span *ngIf="priceControl.invalid && (priceControl.dirty || priceControl.touched)"
->
-        <div *ngIf="priceControl?.errors?.['required']">
-          <app-error></app-error>
-        </div>
-        <div *ngIf="priceControl?.errors?.['min']">
-          <app-error text="Price cannot be less than zero"></app-error>
-        </div>
-      </span>
-    </div>
-  </div>
-  <div slot="footer">
-    <app-btn-negative class="m-r-auto" (click)="ref.close()">
-      <span slot="button">Close</span>
-    </app-btn-negative>
-    <app-btn-positive (click)="addSalaryValue()">
-      Add
-    </app-btn-positive>
-  </div>
+	<div class="title" slot="header">Add salary</div>
+	<div class="wrapper-form" slot="body">
+		<div class="name">Pleaese, add money to your budget</div>
+
+		<div class="salary">
+			<app-input-number
+				[formControl]="priceControl"
+				[class.error]="priceControl.invalid && (priceControl.dirty || priceControl.touched)"
+			>
+				<span>Salary</span>
+			</app-input-number>
+
+			<ng-container *ngIf="priceControl.invalid && (priceControl.dirty || priceControl.touched)">
+				<app-error [errors]="priceControl?.errors"></app-error>
+			</ng-container>
+		</div>
+	</div>
+	<div slot="footer">
+		<app-btn-negative class="m-r-auto" (click)="ref.close()">
+			<span slot="button">Close</span>
+		</app-btn-negative>
+		<app-btn-positive (click)="addSalaryValue()">Add</app-btn-positive>
+	</div>
 </app-modal-main>

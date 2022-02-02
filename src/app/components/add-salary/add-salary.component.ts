@@ -3,6 +3,7 @@ import { DialogRef } from '@ngneat/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { SalaryService } from '../../servises/salary.service';
+import { CustomValidators } from 'src/app/modules/validation/validators/custom-validators';
 
 @Component({
   selector: 'app-add-salary',
@@ -11,7 +12,7 @@ import { SalaryService } from '../../servises/salary.service';
 })
 export class AddSalaryComponent implements OnInit {
   
-  priceControl = new FormControl('',[Validators.required, Validators.min(1)]);
+  priceControl = new FormControl('',[Validators.required, Validators.min(1), CustomValidators.number]);
 
   constructor(public ref: DialogRef){}
 

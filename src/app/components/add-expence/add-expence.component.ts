@@ -6,6 +6,7 @@ import { Category } from '../../modules/category/interfaces/category';
 import { CategoryService } from '../../modules/category/services/category.service';
 import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { SelectOption } from 'src/app/modules/inputs/interfaces/select-option';
+import { CustomValidators } from 'src/app/modules/validation/validators/custom-validators';
 
 @Component({
   selector: 'app-add-expence',
@@ -17,16 +18,19 @@ export class AddExpenceComponent implements OnInit {
   public isEdit = !!this.ref.data;
   public options: SelectOption[] = [];
 
+
   fullNameControl = new FormGroup({
     name: new FormControl(this.ref.data?.name, Validators.required),
     price: new FormControl(this.ref.data?.price, [
       Validators.required,
       Validators.min(1),
+      CustomValidators.number
     ]),
     categoryId: new FormControl(this.ref.data?.categoryId),
     date: new FormControl(this.ref.data?.date || new Date()),
   });
 
+  
   public get nameControl(): FormControl {
     return this.fullNameControl.controls['name'] as FormControl;
   }

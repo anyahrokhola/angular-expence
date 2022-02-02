@@ -1,56 +1,49 @@
 <app-modal-main>
-  <div slot="header">Add expence</div>
-  <div class="wrapper" slot="body">
-    <div class="expence" [formGroup]="fullNameControl">
-      <div class="form-wrapper">
-        <app-input-text formControlName="name"> Name </app-input-text>
-        <div class="error-block">
-          <span
-            *ngIf="
-              nameControl.invalid && (nameControl.dirty || nameControl.touched)
-            "
-          >
-            <div *ngIf="nameControl?.errors?.['required']">
-              <span class="error">Please enter to date</span>
-            </div>
-          </span>
-        </div>
+	<div slot="header">Add expence</div>
+	<div class="wrapper" slot="body">
+		<div class="expence" [formGroup]="fullNameControl">
+			<div class="form-wrapper">
+				<div class="field-wrapper">
+					<app-input-text
+						formControlName="name"
+						[class.error]="nameControl.invalid && (nameControl.dirty || nameControl.touched)"
+					>
+						Name
+					</app-input-text>
 
-        <app-input-number formControlName="price"> Amount </app-input-number>
+					<ng-container *ngIf="nameControl.invalid && (nameControl.dirty || nameControl.touched)">
+						<app-error [errors]="nameControl.errors"></app-error>
+					</ng-container>
+				</div>
 
-        <div class="error-block amount">
-          <span
-            *ngIf="
-              priceControl.invalid &&
-              (priceControl.dirty || priceControl.touched)
-            "
-          >
-            <div *ngIf="priceControl?.errors?.['required']">
-              <app-error></app-error>
-            </div>
-            <div *ngIf="priceControl?.errors?.['min']">
-              <app-error text="Price cannot be less than zero"> </app-error>
-            </div>
-          </span>
-        </div>
-      </div>
+				<div class="field-wrapper">
+					<app-input-number
+						formControlName="price"
+						[class.error]="priceControl.invalid && (priceControl.dirty || priceControl.touched)"
+					>
+						Amount
+					</app-input-number>
 
-      <div class="form-wrapper">
-        <app-input-select formControlName="categoryId" [options]="options">
-          Category
-        </app-input-select>
+					<ng-container *ngIf="priceControl.invalid && (priceControl.dirty || priceControl.touched)">
+						<app-error [errors]="priceControl.errors"></app-error>
+					</ng-container>
+				</div>
+			</div>
 
-        <app-input-date formControlName="date"> Date </app-input-date>
-      </div>
-    </div>
-  </div>
-  <div slot="footer">
-    <app-btn-negative class="m-r-auto" (click)="ref.close()">
-      <span slot="button">Close</span>
-    </app-btn-negative>
-    <app-btn-positive (click)="addExpence()">
-      <span *ngIf="isEdit" slot="button">Edit</span>
-      <span *ngIf="!isEdit" slot="button">Add</span>
-    </app-btn-positive>
-  </div>
+			<div class="form-wrapper">
+				<app-input-select formControlName="categoryId" [options]="options">Category</app-input-select>
+
+				<app-input-date formControlName="date">Date</app-input-date>
+			</div>
+		</div>
+	</div>
+	<div slot="footer">
+		<app-btn-negative class="m-r-auto" (click)="ref.close()">
+			<span slot="button">Close</span>
+		</app-btn-negative>
+		<app-btn-positive (click)="addExpence()">
+			<span *ngIf="isEdit" slot="button">Edit</span>
+			<span *ngIf="!isEdit" slot="button">Add</span>
+		</app-btn-positive>
+	</div>
 </app-modal-main>

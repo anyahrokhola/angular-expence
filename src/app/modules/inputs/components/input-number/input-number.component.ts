@@ -14,8 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class InputNumberComponent implements ControlValueAccessor {
-  public validationNumber = /^[0-9]*$/;
-  public valNumber: number;
+  public val: string;
 
   @Input() placeholder: string = 'Enter amount'
 
@@ -24,8 +23,8 @@ export class InputNumberComponent implements ControlValueAccessor {
   onChange: any = () => {};
   onTouch: any = () => {};
 
-  writeValue(value: number) {
-    this.valNumber = value;
+  writeValue(value: string) {
+    this.val = value;
   }
 
   registerOnChange(fn: any) {
@@ -37,15 +36,18 @@ export class InputNumberComponent implements ControlValueAccessor {
   }
 
   handleInput($event): void {
-    this.isValid = this.validationNumber.test($event.target.value.trim());
-    if (this.isValid && $event.target.value != '') {
-      this.valNumber = Number($event.target.value);
-      this.onChange(this.valNumber);
-      this.onTouch();
-    } 
-    if($event.target.value === ''){
-        this.onChange(0);
+      this.val = $event.target.value;
+      
+      if($event.target.value === ''){
+        this.onChange();
         this.onTouch();
-    }
+
+        return;
+      }
+      
+      const value = isNaN(Number(this.val)) ? this.val : Number(this.val);
+
+      this.onChange(value);
+      this.onTouch();
   }
 }
