@@ -22,6 +22,7 @@
           "options": {
             "outputPath": "dist",
             "deployUrl": "/angular-expence/dist/",
+            "baseHref": "/angular-expence/dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
