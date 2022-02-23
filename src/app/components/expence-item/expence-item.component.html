@@ -1,12 +1,16 @@
-<div class="container">
-  <div class="wrapper">
-    <div class="info-text">
+<div class="container" [class.checked]="item.isChecked">
+  <div class="wrapper" >
+        <div class="info">
+          <div class="info-checked">
+            <input type="checkbox" [checked]="item.isChecked" (change)="checked(item)" />
+          </div>
           <app-category-view [categoryId]="item.categoryId"></app-category-view>
-      <div class="title-wrapper">
-        <span class="name">{{ item.name }}</span>
-        <span class="time-info" >{{item.date | timeFormat}}</span>
-      </div>
-    </div>
+          <div class="info-text">
+            <span class="name">{{ item.name }}</span>
+            <span class="time-info" >{{item.date | timeFormat}}</span>
+          </div>
+        </div>
+    
     <div class="action-wrapper">
       <span class="price"> -${{ item.price }}</span>
       <div class="actions">

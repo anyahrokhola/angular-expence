@@ -9,12 +9,14 @@ button {
   &:hover {
     filter: brightness(85%);
   }
+
+  img {
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+  }
+  
 }
 
-img {
-  margin: 0 5px;
-  width: 15px;
-  height: 15px;
-}
 
   

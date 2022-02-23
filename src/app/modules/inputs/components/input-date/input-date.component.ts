@@ -36,7 +36,12 @@ export class InputDateComponent implements ControlValueAccessor {
 
   handleInput($event): void {
     this.val = $event.target.value;
-    this.onChange(new Date(this.val));
+
+    const date = new Date(this.val);
+    date.setHours(new Date().getHours());
+    date.setMinutes(new Date().getMinutes());
+    
+    this.onChange(date);
     this.onTouch();
   }
 }

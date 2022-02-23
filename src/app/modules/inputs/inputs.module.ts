@@ -7,11 +7,12 @@ import { InputSelectComponent } from './components/input-select/input-select.com
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipeModule } from '../pipe/pipe.module';
 import { SharedModule } from '../shared/shared.module';
+import { InputCheckboxComponent } from './components/input-checkbox/input-checkbox.component';
 
 
 
 @NgModule({
-  declarations: [InputTextComponent, InputDateComponent, InputNumberComponent, InputSelectComponent],
+  declarations: [InputTextComponent, InputDateComponent, InputNumberComponent, InputSelectComponent, InputCheckboxComponent],
   imports: [
     BrowserModule,   
     NgSelectModule, 

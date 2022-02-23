@@ -1,0 +1,12 @@
+<app-modal-main>
+	<div slot="header">Set new date</div>
+	<div class="wrapper" slot="body">
+		<app-input-date [formControl]="dateControl">Date</app-input-date>
+	</div>
+	<div slot="footer">
+		<app-btn-negative class="m-r-auto" (click)="ref.close()">
+			<span slot="button">Close</span>
+		</app-btn-negative>
+		<app-btn-positive (click)="setNewdata()">Set</app-btn-positive>
+	</div>
+</app-modal-main>

@@ -1,0 +1,10 @@
+<div class="wrapper">
+	<a class="icon">
+		<i class="ri-more-2-fill" (click)="isOpen = !isOpen"></i>
+		<ul class="submenu" [class.open]="isOpen">
+			<li *ngFor="let option of options; index as i">
+				<span class="text" (click)="onItemClick(option)">{{ option.text }}</span>
+			</li>
+		</ul>
+	</a>
+</div>

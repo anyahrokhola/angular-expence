@@ -3,5 +3,6 @@ export interface Expence {
     name: string,
     price: number,
     categoryId?: number,
-    date: Date
+    date: Date,
+    isChecked: boolean
 }

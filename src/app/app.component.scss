@@ -71,7 +71,7 @@ li {
       margin: 30px 0 10px;
      
 
-      .item-title {
+      .wrapper-panel {
         position: relative;
         font-size: 24px;
         font-weight: 700;
@@ -79,6 +79,16 @@ li {
         padding-bottom: 20px;
         border-bottom: 1px solid rgba(#ccc, 0.5);
       }
+      .wrapper-actions{
+          display: flex;
+          justify-content: end;
+          img {
+            margin: 0 5px;
+            width: 15px;
+            height: 15px;
+          }
+      }
+
       .title-expence {
         padding: 10px 0;
       }

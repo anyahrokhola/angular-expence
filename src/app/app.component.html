@@ -1,40 +1,44 @@
 <div class="container">
-  <div class="wrapper-data">
-    <div class="wrapper-category">
-      <app-tooltip text="Categories">
-        <app-btn-icon (click)="openListCategory()">
-          <img src="assets/config.png" />
-        </app-btn-icon>
-      </app-tooltip>
-    </div>
-    <div class="wrapper-item">
-      <app-tooltip text="Add to salary">
-        <div class="item" (click)="addSalary()" id="budget">
-          <img src="assets/wallet.png" />
-          <div class="money">
-            <div class="title">Budget</div>
-            <span>${{ budget }}</span>
-          </div>
-        </div>
-      </app-tooltip>
-      <div class="item">
-        <app-balance [budget]="budget"></app-balance>
-      </div>
-    </div>
+	<div class="wrapper-data">
+		<div class="wrapper-category">
+			<app-tooltip text="Categories">
+				<app-btn-icon (click)="openListCategory()">
+					<img src="assets/config.png" />
+				</app-btn-icon>
+			</app-tooltip>
+		</div>
+		<div class="wrapper-item">
+			<app-tooltip text="Add to salary">
+				<div class="item" (click)="addSalary()" id="budget">
+					<img src="assets/wallet.png" />
+					<div class="money">
+						<div class="title">Budget</div>
+						<span>${{ budget }}</span>
+					</div>
+				</div>
+			</app-tooltip>
+			<div class="item">
+				<app-balance [budget]="budget"></app-balance>
+			</div>
+		</div>
 
-    <div class="wrapper-loggs">
-      <div class="item-title">
-        <span class="title-expence">Expence</span>
-      </div>
-      <app-expence-list></app-expence-list>
-    </div>
-    <div class="actions">
-      <app-tooltip text="Add new expence">
-        <button (click)="addExpence()" id="expence">+</button>
-      </app-tooltip>
-    </div>
-    <div class="item">
-      <app-expence></app-expence>
-    </div>
-  </div>
+		<div class="wrapper-loggs">
+			<div class="wrapper-panel">
+				<span class="title-expence">Expence</span>
+				<div class="wrapper-actions" *ngIf="(bulkService.checkeds$ | async)?.length">
+					<app-dots [options]="bulkService.actions" ></app-dots>
+				</div>
+			</div>
+
+			<app-expence-list></app-expence-list>
+		</div>
+		<div class="actions">
+			<app-tooltip text="Add new expence">
+				<button (click)="addExpence()" id="expence">+</button>
+			</app-tooltip>
+		</div>
+		<div class="item">
+			<app-expence></app-expence>
+		</div>
+	</div>
 </div>

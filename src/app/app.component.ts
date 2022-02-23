@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { AddSalaryComponent } from './components/add-salary/add-salary.component';
 import { CategoryListComponent } from './modules/category/components/category-list/category-list.component';
+import { BulkService } from './servises/bulk/bulk.service';
 import { ExpenceServiceService } from './servises/expence-service/expence-service.service';
 import { SaveBudgetService } from './servises/saveBudget/save-budget.service';
 
@@ -16,7 +17,8 @@ export class AppComponent {
   constructor(
     private dialog: DialogService,
     private saveBudget: SaveBudgetService,
-    public expenceService: ExpenceServiceService
+    public expenceService: ExpenceServiceService,
+    public bulkService: BulkService
   ) {}
 
   ngOnInit() {

@@ -1,60 +1,69 @@
 .container {
-  padding: 20px 0;
-  background-color: white;
-  box-shadow: 5px 5px 10px grey;
-  border-radius: 10px;
+	padding: 20px 0;
+	background-color: white;
+	box-shadow: 5px 5px 10px grey;
+	border-radius: 10px;
 
-  .wrapper {
-    margin: 0 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .info-text {
-      display: flex;
-      align-items: center;
-
-      span {
-        max-width: 250px;
-        &.name {
-          flex: 1;
-        }
-      }
-
-      .title-wrapper {
-        display: flex;
-        flex-direction: column;
-
-        .name {
-          font-size: 20px;
-          font-weight: 700;
-          margin-left: 10px;
-        }
-        .time-info {
-          margin: 5px 0 0 10px;
-          font-size: 14px;
-          font-weight: 700;
-          color: grey;
-        }
-      }
-    }
-    .action-wrapper {
-      display: flex;
-      align-items: center;
-
-      .price {
-        margin-right: 10px;
-        font-weight: 700;
-      }
-
-      .actions {
-        display: flex;
-        img {
-          margin: 0 5px;
-          width: 15px;
-          height: 15px;
-        }
-      }
-    }
+  &.checked {
+    background-color: #d3d3d3;
   }
+
+	.wrapper {
+		margin: 0 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		
+		.info-checked {
+      display: flex;
+      padding-right: 10px;
+		}
+
+		.info {
+			display: flex;
+			align-items: center;
+
+			span {
+				max-width: 250px;
+				&.name {
+					flex: 1;
+				}
+			}
+
+			.info-text {
+				display: flex;
+				flex-direction: column;
+
+				.name {
+					font-size: 20px;
+					font-weight: 700;
+					margin-left: 10px;
+				}
+				.time-info {
+					margin: 5px 0 0 10px;
+					font-size: 14px;
+					font-weight: 700;
+					color: grey;
+				}
+			}
+		}
+		.action-wrapper {
+			display: flex;
+			align-items: center;
+
+			.price {
+				margin-right: 10px;
+				font-weight: 700;
+			}
+
+			.actions {
+				display: flex;
+				img {
+					margin: 0 5px;
+					width: 15px;
+					height: 15px;
+				}
+			}
+		}
+	}
 }

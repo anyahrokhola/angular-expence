@@ -19,6 +19,7 @@ import { ButtonModule } from './modules/buttons/buttons.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { InputsModule } from './modules/inputs/inputs.module';
 import { PipeModule } from './modules/pipe/pipe.module';
+import { SetDateComponent } from './components/set-date/set-date.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PipeModule } from './modules/pipe/pipe.module';
     ExpenceItemComponent,
     ConfirmDeleteComponent,
     ExpenceComponent,
+    SetDateComponent
   ],
   imports: [
     BrowserModule,
