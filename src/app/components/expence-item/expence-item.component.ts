@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { BulkService } from 'src/app/servises/bulk/bulk.service';
+import { BulkService } from 'src/app/modules/bulk/services/bulk/bulk.service';
+
 import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { Expence } from '../../interfaces/expence';
 

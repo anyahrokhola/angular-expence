@@ -72,6 +72,9 @@ li {
      
 
       .wrapper-panel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         position: relative;
         font-size: 24px;
         font-weight: 700;

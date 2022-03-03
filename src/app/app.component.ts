@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { AddSalaryComponent } from './components/add-salary/add-salary.component';
+import { BulkService } from './modules/bulk/services/bulk/bulk.service';
 import { CategoryListComponent } from './modules/category/components/category-list/category-list.component';
-import { BulkService } from './servises/bulk/bulk.service';
+
 import { ExpenceServiceService } from './servises/expence-service/expence-service.service';
 import { SaveBudgetService } from './servises/saveBudget/save-budget.service';
 
@@ -13,6 +14,7 @@ import { SaveBudgetService } from './servises/saveBudget/save-budget.service';
 })
 export class AppComponent {
   public budget: number = 0;
+  public isCheckedAll: boolean = false;
 
   constructor(
     private dialog: DialogService,

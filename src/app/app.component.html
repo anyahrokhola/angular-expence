@@ -24,9 +24,11 @@
 
 		<div class="wrapper-loggs">
 			<div class="wrapper-panel">
+				<app-check-box-bulk></app-check-box-bulk>
+
 				<span class="title-expence">Expence</span>
-				<div class="wrapper-actions" *ngIf="(bulkService.checkeds$ | async)?.length">
-					<app-dots [options]="bulkService.actions" ></app-dots>
+				<div class="wrapper-actions" >
+					<app-dots *ngIf="(bulkService.checkeds$ | async)?.length" [options]="bulkService.actions"></app-dots>
 				</div>
 			</div>
 
