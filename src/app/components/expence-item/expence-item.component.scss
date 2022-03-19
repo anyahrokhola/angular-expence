@@ -3,20 +3,21 @@
 	background-color: white;
 	box-shadow: 5px 5px 10px grey;
 	border-radius: 10px;
+	transition: 150ms;
 
-  &.checked {
-    background-color: #d3d3d3;
-  }
+	&.checked {
+		outline: 2px solid green;
+	}
 
 	.wrapper {
 		margin: 0 10px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		
+
 		.info-checked {
-      display: flex;
-      padding-right: 10px;
+			display: flex;
+			padding-right: 10px;
 		}
 
 		.info {

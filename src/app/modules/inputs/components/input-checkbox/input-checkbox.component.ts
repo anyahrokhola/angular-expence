@@ -1,22 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Expence } from 'src/app/interfaces/expence';
+import { Component } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-input-checkbox',
-  templateUrl: './input-checkbox.component.html',
-  styleUrls: ['./input-checkbox.component.scss']
+	selector: 'app-input-checkbox',
+	templateUrl: './input-checkbox.component.html',
+	styleUrls: ['./input-checkbox.component.scss'],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: InputCheckboxComponent,
+			multi: true,
+		},
+	],
 })
-export class InputCheckboxComponent implements OnInit {
+export class InputCheckboxComponent implements ControlValueAccessor {
+	public val: boolean = false;
 
-  constructor() { }
+	constructor() {}
 
-  public isChecked: boolean = false;
+	onChange: any = () => {};
+	onTouch: any = () => {};
 
-  ngOnInit(): void {
-  }
+	writeValue(value: any): void {
+		this.val = value;
+	}
+	registerOnChange(fn: any): void {
+		this.onChange = fn;
+	}
+	registerOnTouched(fn: any): void {
+		this.onTouch = fn;
+	}
 
-  checked(item: Expence) {
-    item.isChecked = !item.isChecked;
-  }
-
+	handleInput(): void {
+		this.val = !this.val;
+		const value = this.val;
+		this.onChange(value);
+		this.onTouch();
+	}
 }

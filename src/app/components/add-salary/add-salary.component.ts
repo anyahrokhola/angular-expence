@@ -15,6 +15,9 @@ export class AddSalaryComponent implements OnInit {
   constructor(public ref: DialogRef){}
 
   ngOnInit(): void {
+    this.priceControl.valueChanges.subscribe((value) => {
+      console.log(value)
+    })
   }
 
   addSalaryValue(){

@@ -30,7 +30,6 @@ export class BulkService {
 		items.forEach(el => (el.isChecked = true));
 		const checkeds = this.checkeds$.value;
 		this.checkeds$.next([...checkeds, ...items]);
-		this.isEqually();
 	}
 
 	uncheck(item: Expence | Expence[]) {
@@ -38,11 +37,9 @@ export class BulkService {
 		items.forEach(el => (el.isChecked = false));
 		const checkeds = this.checkeds$.value;
 		this.checkeds$.next(checkeds.filter(el => !items.find(it => it.id === el.id)));
-		this.isEqually();
 	}
 
 	checkAll() {
-		this.isEqually();
 		const keys = Object.keys(this.expenceService.expences$.value);
 		let checkeds: Expence[] = [];
 		keys.forEach(key => {
@@ -53,7 +50,6 @@ export class BulkService {
 	}
 
 	uncheckAll() {
-		this.isEqually();
 		this.uncheck(this.checkeds$.value);
 		this.checkeds$.next([]);
 	}

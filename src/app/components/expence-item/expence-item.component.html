@@ -2,7 +2,10 @@
   <div class="wrapper" >
         <div class="info">
           <div class="info-checked">
-            <input type="checkbox" [checked]="item.isChecked" (change)="checked(item)" />
+            <app-input-checkbox [formControl]="checkedControl">
+
+            </app-input-checkbox>
+            <!-- <input type="checkbox" [checked]="item.isChecked" (change)="checked(item)" /> -->
           </div>
           <app-category-view [categoryId]="item.categoryId"></app-category-view>
           <div class="info-text">

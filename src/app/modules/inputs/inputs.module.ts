@@ -23,7 +23,8 @@ import { InputCheckboxComponent } from './components/input-checkbox/input-checkb
     InputTextComponent,
     InputDateComponent,
     InputNumberComponent,
-    InputSelectComponent
+    InputSelectComponent,
+    InputCheckboxComponent,
   ],
   providers: [
     
