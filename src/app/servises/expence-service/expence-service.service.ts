@@ -144,7 +144,7 @@ export class ExpenceServiceService {
 		return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 	}
 
-	private saveExpences(expences: Data) {
+	public saveExpences(expences: Data) {
 		const jsonData = JSON.stringify(expences);
 		localStorage.setItem('expences', jsonData);
 	}

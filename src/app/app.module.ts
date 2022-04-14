@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { DialogModule } from '@ngneat/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import { AddSalaryComponent } from './components/add-salary/add-salary.component';
@@ -23,36 +24,37 @@ import { SetDateComponent } from './components/set-date/set-date.component';
 import { BulkModule } from './modules/bulk/bulk.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AddSalaryComponent,
-    AddExpenceComponent,
-    BalanceComponent,
-    ExpenceListComponent,
-    ExpenceItemComponent,
-    ConfirmDeleteComponent,
-    ExpenceComponent,
-    SetDateComponent
-  ],
-  imports: [
-    BrowserModule,
-    DialogModule.forRoot({
-      minHeight: 300,
-      width: 600,
-      maxHeight: '80%',
-    }),
-    FormsModule,
-    ReactiveFormsModule,
-    CategoryModule,
-    NgSelectModule,
-    ModalModule,
-    ButtonModule,
-    SharedModule,
-    InputsModule,
-    PipeModule,
-    BulkModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		AddSalaryComponent,
+		AddExpenceComponent,
+		BalanceComponent,
+		ExpenceListComponent,
+		ExpenceItemComponent,
+		ConfirmDeleteComponent,
+		ExpenceComponent,
+		SetDateComponent,
+	],
+	imports: [
+		BrowserModule,
+		DialogModule.forRoot({
+			minHeight: 300,
+			width: 600,
+			maxHeight: '80%',
+		}),
+		FormsModule,
+		ReactiveFormsModule,
+		CategoryModule,
+		NgSelectModule,
+		ModalModule,
+		ButtonModule,
+		SharedModule,
+		InputsModule,
+		PipeModule,
+		BulkModule,
+		DragDropModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

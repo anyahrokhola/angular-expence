@@ -4,6 +4,7 @@
 	box-shadow: 5px 5px 10px grey;
 	border-radius: 10px;
 	transition: 150ms;
+	cursor: pointer;
 
 	&.checked {
 		outline: 2px solid green;

@@ -1,13 +1,20 @@
-<div class="group" *ngFor="let date of dates; index as j">
-  <ng-container *ngIf="expences[keys[j]].length">
-    <div class="date-wrapper">
-      <span class="date">{{ date | dateFormat }}</span>
-      <span class="day">({{ date | dateDay }})</span>
-    </div>
-    <ul>
-      <li *ngFor="let item of expences[keys[j]]; index as i" class="loggs">
-        <app-expence-item [item]="item" class="item"></app-expence-item>
-      </li>
-    </ul>
-  </ng-container>
-</div>
+<ng-container cdkDropListGroup>
+	<div class="group" *ngFor="let date of dates; index as j">
+		<ng-container *ngIf="expences[keys[j]].length">
+			<div class="date-wrapper">
+				<span class="date">{{ date | dateFormat }}</span>
+				<span class="day">({{ date | dateDay }})</span>
+			</div>
+			<ul
+				*ngIf="expences[keys[j]]"
+				cdkDropList
+				[cdkDropListData]="expences[keys[j]]"
+				(cdkDropListDropped)="drop($event, keys[j])"
+			>
+				<li *ngFor="let item of expences[keys[j]]; index as i" class="loggs" cdkDrag [cdkDragData]="item">
+					<app-expence-item [item]="item" class="item"></app-expence-item>
+				</li>
+			</ul>
+		</ng-container>
+	</div>
+</ng-container>

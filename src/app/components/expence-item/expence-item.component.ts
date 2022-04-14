@@ -17,6 +17,10 @@ export class ExpenceItemComponent {
 
 	constructor(private expenceService: ExpenceServiceService, public bulkService: BulkService) {}
 
+	ngOnChanges(): void {
+		
+	}
+
 	ngOnInit() {
 		this.checkedControl.valueChanges.subscribe(value => {
 			value ? this.bulkService.check(this.item) : this.bulkService.uncheck(this.item);
