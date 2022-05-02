@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Category } from '../../interfaces/category';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-category-item',
@@ -7,22 +8,24 @@ import { Category } from '../../interfaces/category';
   styleUrls: ['./category-item.component.scss']
 })
 export class CategoryItemComponent implements OnInit {
-
   @Input() itemCategory: Category;
 
   @Output() removeClick = new EventEmitter<Category>();
   @Output() editClick = new EventEmitter<Category>();
-  constructor() { }
+
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    console.log(this.itemCategory);
+    
   }
 
   removeItem() {
-    this.removeClick.emit(this.itemCategory)
-  }
+		this.categoryService.remove(this.itemCategory);
+	}
 
-  editItem() {
-    this.editClick.emit(this.itemCategory)
-  }
+	editItem() {
+		this.categoryService.edit(this.itemCategory);
+	}
 
 }

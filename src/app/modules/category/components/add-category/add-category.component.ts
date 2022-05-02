@@ -1,62 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogRef} from '@ngneat/dialog';
+import { DialogRef } from '@ngneat/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../interfaces/category';
-import { CategoryService } from '../../services/category.service';
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.scss'],
+	selector: 'app-add-category',
+	templateUrl: './add-category.component.html',
+	styleUrls: ['./add-category.component.scss'],
 })
 export class AddCategoryComponent implements OnInit {
-  public categories: Category[] = [];
-  public count: number = 0;
-  public isEdit = !!this.ref.data;
+	public categories: Category[] = [];
+	public count: number = 0;
+	public isEdit = !!this.ref.data;
 
-  categoryControl = new FormGroup({
-    name: new FormControl(this.ref.data?.name, Validators.required),
-    icon: new FormControl({
-      icon: this.ref.data?.icon,
-      color: this.ref.data?.color
-    }, Validators.required),
-  });
+	categoryControl = new FormGroup({
+		name: new FormControl(this.ref.data?.name, Validators.required),
+		icon: new FormControl(
+			{
+				name: this.ref.data?.icon.name,
+				color: this.ref.data?.icon?.color,
+			},
+			Validators.required
+		),
+	});
 
-  public get nameControl(): FormControl {
-    return this.categoryControl.controls['name'] as FormControl;
-  }
+	public get nameControl(): FormControl {
+		return this.categoryControl.controls['name'] as FormControl;
+	}
 
-  public get iconControl(): FormControl {
-    return this.categoryControl.controls['icon'] as FormControl;
-  }
+	public get iconControl(): FormControl {
+		return this.categoryControl.controls['icon'] as FormControl;
+	}
 
-  constructor(
-    public ref: DialogRef<Category | undefined>,
-    private categoryService: CategoryService
-  ) {}
+	constructor(public ref: DialogRef<Category | undefined>) {}
 
-  ngOnInit(): void {}
+	ngOnInit(): void {}
 
-  addCategory() {
-    this.categoryControl.markAllAsTouched();
-    if (this.categoryControl.valid) {
-      let newCategory: Category;
-      if (!this.isEdit) {
-        newCategory = this.categoryService.createCategory({
-          ...this.categoryControl.value,
-          icon: this.iconControl.value.icon,
-          color: this.iconControl.value.color,
-        });
-      }
-      if (this.isEdit) {
-        newCategory = {
-          ...this.ref.data,
-          ...this.categoryControl.value,
-          icon: this.iconControl.value.icon,
-          color: this.iconControl.value.color,
-        };
-      }
-      this.ref.close(newCategory);
-    }
-  }
+	addCategory() {
+		this.categoryControl.markAllAsTouched();
+
+		if (this.categoryControl.invalid) {
+			return;
+		}
+		
+		return this.ref.close(this.categoryControl.value);
+	}
 }

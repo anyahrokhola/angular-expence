@@ -1,79 +1,44 @@
 import { Injectable } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { ConfirmDeleteComponent } from 'src/app/components/confirm-delete/confirm-delete.component';
 import { AddCategoryComponent } from '../components/add-category/add-category.component';
 import { Category } from '../interfaces/category';
+import { AddCategory, DeleteCategory, EditCategory } from '../store/actions/categories.actions';
+import { selectCategories } from '../store/selectors/categories.selector';
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class CategoryService {
-  public categories$ = new BehaviorSubject<Category[]>([]);
-  public categories: Category[] = [];
+	constructor(private store: Store, private dialog: DialogService) {
+		this.store.select(selectCategories).subscribe(categories => this.saveCategories(categories));
+	}
 
-  constructor(private dialog: DialogService) {
-    const json = localStorage.getItem('categories');
+	async add() {
+		const result = await this.dialog.open(AddCategoryComponent).afterClosed$.toPromise();
 
-    if (json) {
-      this.categories = JSON.parse(json);
-      this.categories$.next(this.categories);
-    }
-  }
+		if (result) {
+			this.store.dispatch(new AddCategory(result));
+		}
+	}
 
-  getCategoryId(): number {
-    let max: number = 0;
+	async remove(item: Category) {
+		if (await this.dialog.open<null, boolean>(ConfirmDeleteComponent).afterClosed$.toPromise()) {
+			this.store.dispatch(new DeleteCategory(item));
+		}
+	}
 
-    for (let i = 0; i < this.categories.length; i++) {
-      if (max < this.categories[i].id) {
-        max = this.categories[i].id;
-      }
-    }
+	async edit(item: Category) {
+		const result = await this.dialog.open(AddCategoryComponent, { data: item }).afterClosed$.toPromise();
 
-    return max + 1;
-  }
+		if (result) {
+			this.store.dispatch(new EditCategory(item, result));
+		}
+	}
 
-  createCategory(data: Omit<Category, 'id'>): Category {
-    const category: Category = { ...data, id: this.getCategoryId() };
-    this.categories.push(category);
-    this.categories$.next(this.categories);
-    this.saveCategories();
-    return category;
-  }
-
-  removeCategory(category: Category) {
-    const dialogRef = this.dialog.open(ConfirmDeleteComponent);
-
-    dialogRef.afterClosed$.subscribe((result) => {
-      if (result) {
-        this.categories = this.categories.filter(
-          (item) => item.id != category.id
-        );
-        this.categories$.next(this.categories);
-        this.saveCategories();
-      }
-    });
-  }
-
-  editCategory(item: Category, i: number) {
-    const dialogRef = this.dialog.open(AddCategoryComponent, {
-      data: {
-        ...item,
-      },
-    });
-
-    dialogRef.afterClosed$.subscribe((result: Category | null) => {
-      if (result) {
-        this.categories[i] = result;
-        this.categories = [...this.categories];
-        this.categories$.next(this.categories);
-      }
-      this.saveCategories();
-    });
-  }
-
-  private saveCategories() {
-    const jsonData = JSON.stringify([...this.categories]);
-    localStorage.setItem('categories', jsonData);
-  }
+	private saveCategories(categories: Category[]) {
+		const jsonData = JSON.stringify(categories);
+		localStorage.setItem('categories', jsonData);
+	}
 }

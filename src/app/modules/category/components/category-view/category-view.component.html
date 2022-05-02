@@ -1,15 +1,15 @@
 <app-tooltip text="{{ text }}">
   <div
     class="category-wrapper"
-    [ngStyle]="{ background: category.color | iconBackgroundColor }"
+    [ngStyle]="{ background: category.icon.color | iconBackgroundColor }"
   >
     <div class="wrapper-list">
       <span class="icon"
         ><i
-          [class]="category.icon"
+          [class]="category.icon.name"
           [ngStyle]="{
-            color: category.color,
-            background: category.color | iconBackgroundColor
+            color: category.icon.color,
+            background: category.icon.color | iconBackgroundColor
           }"
         ></i
       ></span>

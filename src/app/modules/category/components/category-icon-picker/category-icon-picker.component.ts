@@ -31,6 +31,8 @@ export class CategoryIconPickerComponent
 
   writeValue(icon: IconData): void {
     this.icon = icon;
+    console.log(icon);
+    
   }
   registerOnChange(fn: any): void {
     this.onChange = fn

@@ -14,6 +14,9 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryColorComponent } from './components/category-color/category-color.component';
 import { PipeModule } from '../pipe/pipe.module';
 import { InputsModule } from '../inputs/inputs.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { categoriesReducer } from './store/reducers/categories.reducer';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { InputsModule } from '../inputs/inputs.module';
     ButtonModule,
     SharedModule,
     PipeModule,
-    InputsModule
+    InputsModule,
+    StoreModule.forFeature('categories', categoriesReducer),
+		EffectsModule.forFeature([]),
   ],
   providers: [],
   exports:[

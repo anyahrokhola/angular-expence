@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Expence } from '../../interfaces/expence';
-import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { SortService } from 'src/app/servises/sort/sort.service';
-import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Store } from '@ngrx/store';
+import { selectExpences } from 'src/app/store/selectors/expence.selector';
+import { ExpenceHelper } from 'src/app/helpers/expence.helper';
+import { EditExpence } from 'src/app/store/actions/expence.actions';
 
 @Component({
 	selector: 'app-expence-list',
@@ -14,23 +17,19 @@ export class ExpenceListComponent implements OnInit {
 	public dates: Date[] = [];
 	public expences: Record<string, Expence[]> = {};
 
-	constructor(private expenceService: ExpenceServiceService, private sortService: SortService) {}
+	constructor(private store: Store, private sortService: SortService) {}
 
 	ngOnInit(): void {
-		this.expenceService.expences$.subscribe(expences => {
+		this.store.select(selectExpences).subscribe(expences => {
 			this.expences = expences;
 			this.keys = Object.keys(expences);
 
 			this.dates = this.sortService.sort(this.keys.map(el => new Date(el)));
-
-			this.keys = this.dates.map(date => this.expenceService.getDate(date));
+			this.keys = this.dates.map(date => ExpenceHelper.getExpenceDate(date));
 		});
 	}
 
 	drop(event: CdkDragDrop<Expence[]>, key: string) {
-		transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-
-    event.item.data.date = new Date(key);
-		this.expenceService.expences$.next(this.expences);
+		this.store.dispatch(new EditExpence(event.item.data, { date: new Date(key) }))
 	}
 }

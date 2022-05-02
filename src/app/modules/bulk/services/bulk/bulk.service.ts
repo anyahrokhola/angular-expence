@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { SetDateComponent } from 'src/app/components/set-date/set-date.component';
 import { Expence } from 'src/app/interfaces/expence';
 import { DortOption } from 'src/app/modules/shared/interfaces/dort-option';
-import { ExpenceServiceService } from '../../../../servises/expence-service/expence-service.service';
+import { DeleteExpence, EditExpence } from 'src/app/store/actions/expence.actions';
+import { selectExpences } from 'src/app/store/selectors/expence.selector';
 
 @Injectable({
 	providedIn: 'root',
@@ -23,7 +25,11 @@ export class BulkService {
 		},
 	];
 
-	constructor(private expenceService: ExpenceServiceService, private dialog: DialogService) {}
+	private expences: Record<string, Expence[]> = {};
+
+	constructor(private store: Store, private dialog: DialogService) {
+		this.store.select(selectExpences).subscribe(expences => (this.expences = expences));
+	}
 
 	check(item: Expence | Expence[]) {
 		const items = Array.isArray(item) ? item : [item];
@@ -40,10 +46,10 @@ export class BulkService {
 	}
 
 	checkAll() {
-		const keys = Object.keys(this.expenceService.expences$.value);
+		const keys = Object.keys(this.expences);
 		let checkeds: Expence[] = [];
 		keys.forEach(key => {
-			checkeds = checkeds.concat(this.expenceService.expences$.value[key]);
+			checkeds = checkeds.concat(this.expences[key]);
 		});
 		this.check(checkeds);
 		this.checkeds$.next([...checkeds]);
@@ -55,21 +61,20 @@ export class BulkService {
 	}
 
 	getLengthCheckeds(): number {
-		const keys = Object.keys(this.expenceService.expences$.value);
+		const keys = Object.keys(this.expences);
 		let checkeds: Expence[] = [];
 		keys.forEach(key => {
-			checkeds = checkeds.concat(this.expenceService.expences$.value[key]);
+			checkeds = checkeds.concat(this.expences[key]);
 		});
 
 		return checkeds.length;
 	}
 
-	isEqually(): boolean{
+	isEqually(): boolean {
 		let isEqually: boolean;
-		if( this.checkeds$.value.length === this.getLengthCheckeds()){
+		if (this.checkeds$.value.length === this.getLengthCheckeds() && this.checkeds$.value.length != 0) {
 			isEqually = true;
-		}
-		else{
+		} else {
 			isEqually = false;
 		}
 		return isEqually;
@@ -77,7 +82,7 @@ export class BulkService {
 
 	removeChecked(): void {
 		const checkeds = this.checkeds$.value;
-		checkeds.forEach(el => this.expenceService.quickRemove(el));
+		checkeds.forEach(el => this.store.dispatch(new DeleteExpence(el)));
 		this.checkeds$.next([]);
 	}
 
@@ -87,7 +92,7 @@ export class BulkService {
 		dialogRef.afterClosed$.subscribe((result: Date | null) => {
 			if (result) {
 				const checkeds = this.checkeds$.value;
-				checkeds.forEach(el => this.expenceService.quickEdit(el, { ...el, date: result }));
+				checkeds.forEach(el =>this.store.dispatch(new EditExpence(el, { date: result })));
 				this.checkeds$.next([]);
 			}
 		});

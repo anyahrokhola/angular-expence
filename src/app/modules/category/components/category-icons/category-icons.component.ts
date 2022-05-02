@@ -1,29 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { DialogRef } from '@ngneat/dialog';
 import { icons } from '../../constants/icons.const';
 import { IconData } from '../../interfaces/category';
 
 @Component({
-  selector: 'app-category-icons',
-  templateUrl: './category-icons.component.html',
-  styleUrls: ['./category-icons.component.scss'],
+	selector: 'app-category-icons',
+	templateUrl: './category-icons.component.html',
+	styleUrls: ['./category-icons.component.scss'],
 })
 export class CategoryIconsComponent implements OnInit {
-  public readonly icons = icons;
+	public readonly icons = icons;
 
-  colorControl = new FormControl(this.ref.data?.color,);
+	colorControl = new FormControl(this.ref.data?.color);
 
-  constructor(public ref: DialogRef<IconData>) {}
+	constructor(public ref: DialogRef<IconData>) {}
 
-  ngOnInit(): void {}
+	ngOnInit(): void {}
 
-  clickIcon(iconName: string) {
-    const data: IconData = {
-      icon: iconName,
-      color: this.colorControl.value,
-    };
-
-    this.ref.close(data);
-  }
+	clickIcon(name: string) {
+		const data: IconData = { name, color: this.colorControl.value };
+		this.ref.close(data);
+	}
 }

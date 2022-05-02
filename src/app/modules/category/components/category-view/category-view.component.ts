@@ -1,49 +1,47 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Category } from '../../interfaces/category';
-import { CategoryService } from '../../services/category.service';
+import { selectCategories } from '../../store/selectors/categories.selector';
 
 @Component({
-  selector: 'app-category-view',
-  templateUrl: './category-view.component.html',
-  styleUrls: ['./category-view.component.scss'],
+	selector: 'app-category-view',
+	templateUrl: './category-view.component.html',
+	styleUrls: ['./category-view.component.scss'],
 })
 export class CategoryViewComponent implements OnInit {
-  @Input() categoryId: number;
+	@Input() categoryId: number;
 
-  public category: Category = {
-    name: '',
-    icon: 'ri-image-line',
-    id: -1,
-  };
+	public category: Category = {
+		name: '',
+		icon: { name: 'ri-image-line' },
+		id: -1,
+	};
 
-  public text: string;
+	public text: string;
 
-  constructor(public categoryService: CategoryService) {}
+	constructor(private store: Store) {}
 
-  ngOnInit(): void {
-   
-    this.category = this.getCategoryData(this.categoryService.categories);
+	ngOnInit(): void {
+		this.store.select(selectCategories).subscribe(categories => {
+			this.category = this.getCategoryData(categories);
+		});
 
-    this.categoryService.categories$.subscribe((categories) => {
-      this.category = this.getCategoryData(categories);
-    });
+		this.text = this.category.id != -1 ? this.category.name : 'No category';
+	}
 
-    this.text = this.category.id != -1 ? this.category.name : "No category";
-  }
+	private getCategoryData(data: Category[]): Category {
+		for (let i = 0; i < data.length; i++) {
+			if (this.categoryId === data[i].id) {
+				return {
+					...data[i],
+				};
+			}
+		}
 
-  private getCategoryData(data: Category[]): Category {
-    for (let i = 0; i < data.length; i++) {
-      if (this.categoryId === data[i].id) {
-        return {
-          ...data[i],
-        };
-      }
-    }
-    return {
-      name: '',
-      icon: 'ri-image-line',
-      id: -1,
-    };
-  }
-
+		return {
+			name: '',
+			icon:{ name: 'ri-image-line' },
+			id: -1,
+		};
+	}
 }

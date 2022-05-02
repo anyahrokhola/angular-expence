@@ -1,22 +1,31 @@
 <div class="wrapper-list">
-  <div class="item">
-    <div class="icon-wrapper">
-      <span class="icon"><i [class]="itemCategory.icon" [ngStyle]="{color: itemCategory.color, borderColor: itemCategory.color, background: itemCategory.color | iconBackgroundColor}"></i></span>
-    </div>
-    <div class="title-wrapper">
-      <span class="name">{{ itemCategory.name }}</span>
-    </div>
-    <div class="action">
-      <app-tooltip text="Edit" direction="left">
-        <app-btn-icon (click)="editItem()">
-          <img src="assets/edit.png" />
-        </app-btn-icon>
-      </app-tooltip>
-      <app-tooltip text="Delete" direction="left">
-        <app-btn-icon (click)="removeItem()">
-          <img src="assets/delete.png" alt="" />
-        </app-btn-icon>
-      </app-tooltip>
-    </div>
-  </div>
+	<div class="item">
+		<div class="icon-wrapper">
+			<span class="icon">
+				<i
+					[class]="itemCategory.icon.name"
+					[ngStyle]="{
+						color: itemCategory.icon.color,
+						borderColor: itemCategory.icon.color,
+						background: itemCategory.icon.color | iconBackgroundColor
+					}"
+				></i>
+			</span>
+		</div>
+		<div class="title-wrapper">
+			<span class="name">{{ itemCategory.name }}</span>
+		</div>
+		<div class="action">
+			<app-tooltip text="Edit" direction="left">
+				<app-btn-icon (click)="editItem()">
+					<img src="assets/edit.png" />
+				</app-btn-icon>
+			</app-tooltip>
+			<app-tooltip text="Delete" direction="left">
+				<app-btn-icon (click)="removeItem()">
+					<img src="assets/delete.png" alt="" />
+				</app-btn-icon>
+			</app-tooltip>
+		</div>
+	</div>
 </div>

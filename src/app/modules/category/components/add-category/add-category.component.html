@@ -16,10 +16,6 @@
     <app-input-text placeholder='Enter name category' [formControl]="nameControl">
       Category
     </app-input-text>
-  
-    
-
-    
 
     <span *ngIf="nameControl.invalid && (nameControl.dirty ||nameControl.touched)">
       <div class="error" *ngIf="nameControl?.errors?.['required']">

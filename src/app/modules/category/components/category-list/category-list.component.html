@@ -6,12 +6,12 @@
       <span class="title-name">name</span>
       <span class="title-action">action</span>
     </div>
-    <ul>
-      <li *ngFor="let item of categoryService.categories; index as i">
+    <ul >
+      <li *ngFor="let item of categories; index as i">
         <app-category-item
           [itemCategory]="item"
-          (editClick)="categoryService.editCategory(item, i)"
-          (removeClick)="categoryService.removeCategory(item)"
+          (editClick)="categoryService.edit(item)"
+          (removeClick)="categoryService.remove(item)"
         ></app-category-item>
       </li>
     </ul>

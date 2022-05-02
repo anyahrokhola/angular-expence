@@ -1,11 +1,10 @@
 export interface Category {
     id: number,
     name: string,
-    icon: string,
-    color?: string,
+    icon: IconData,
 }
 
 export interface IconData {
-    icon: string,
-    color: string,
+    name: string,
+    color?: string,
 }

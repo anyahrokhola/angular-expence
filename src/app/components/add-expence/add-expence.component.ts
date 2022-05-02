@@ -2,76 +2,56 @@ import { Component, OnInit } from '@angular/core';
 import { DialogRef } from '@ngneat/dialog';
 import { Expence } from '../../interfaces/expence';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CategoryService } from '../../modules/category/services/category.service';
-import { ExpenceServiceService } from 'src/app/servises/expence-service/expence-service.service';
 import { SelectOption } from 'src/app/modules/inputs/interfaces/select-option';
 import { CustomValidators } from 'src/app/modules/validation/validators/custom-validators';
+import { Store } from '@ngrx/store';
+import { selectCategories } from 'src/app/modules/category/store/selectors/categories.selector';
 
 @Component({
-  selector: 'app-add-expence',
-  templateUrl: './add-expence.component.html',
-  styleUrls: ['./add-expence.component.scss'],
+	selector: 'app-add-expence',
+	templateUrl: './add-expence.component.html',
+	styleUrls: ['./add-expence.component.scss'],
 })
 export class AddExpenceComponent implements OnInit {
-  public data: Expence[] = [];
-  public isEdit = !!this.ref.data;
-  public options: SelectOption[] = [];
+	public data: Expence[] = [];
+	public isEdit = !!this.ref.data;
+	public options: SelectOption[] = [];
 
+	fullNameControl = new FormGroup({
+		name: new FormControl(this.ref.data?.name, Validators.required),
+		price: new FormControl(this.ref.data?.price, [Validators.required, Validators.min(1), CustomValidators.number]),
+		categoryId: new FormControl(this.ref.data?.categoryId),
+		date: new FormControl(this.ref.data?.date || new Date()),
+	});
 
-  fullNameControl = new FormGroup({
-    name: new FormControl(this.ref.data?.name, Validators.required),
-    price: new FormControl(this.ref.data?.price, [
-      Validators.required,
-      Validators.min(1),
-      CustomValidators.number
-    ]),
-    categoryId: new FormControl(this.ref.data?.categoryId),
-    date: new FormControl(this.ref.data?.date || new Date()),
-  });
+	public get nameControl(): FormControl {
+		return this.fullNameControl.controls['name'] as FormControl;
+	}
 
-  
-  public get nameControl(): FormControl {
-    return this.fullNameControl.controls['name'] as FormControl;
-  }
+	public get priceControl(): FormControl {
+		return this.fullNameControl.controls['price'] as FormControl;
+	}
 
-  public get priceControl(): FormControl {
-    return this.fullNameControl.controls['price'] as FormControl;
-  }
+	constructor(private store: Store, public ref: DialogRef) {}
 
-  constructor(
-    public ref: DialogRef,
-    public categoryService: CategoryService,
-    public expenceService: ExpenceServiceService
-  ) {}
+	ngOnInit() {
+		this.store.select(selectCategories).subscribe(categories => {
+			this.options = categories.map(category => ({
+				id: category.id,
+				name: category.name,
+				icon: category.icon.name,
+				iconColor: category.icon.color,
+			}));
+		});
+	}
 
-  ngOnInit() {
-    this.options = this.categoryService.categories.map((category) => {
-      return {
-        id: category.id,
-        name: category.name,
-        icon: category.icon,
-        iconColor: category.color,
-      };
-    });
-  }
+	addExpence() {
+		this.fullNameControl.markAllAsTouched();
 
-  addExpence() {
-    let newExpence: Expence;
+		if (this.fullNameControl.invalid) {
+			return;
+		}
 
-    this.fullNameControl.markAllAsTouched();
-    if (this.fullNameControl.valid) {
-      if (!this.isEdit) {
-        newExpence = this.expenceService.createExpence(
-          this.fullNameControl.value
-        );
-      }
-      if (this.isEdit) {
-        newExpence = {
-          ...this.ref.data,
-          ...this.fullNameControl.value,
-        };
-      }
-      this.ref.close(newExpence);
-    }
-  }
+		return this.ref.close(this.fullNameControl.value);
+	}
 }

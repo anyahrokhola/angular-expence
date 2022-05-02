@@ -1,26 +1,35 @@
-import { Component,OnInit} from '@angular/core';
-import { DialogRef, DialogService } from '@ngneat/dialog';
-import { AddCategoryComponent } from '../add-category/add-category.component';
+import { Component, OnInit } from '@angular/core';
+import { DialogRef } from '@ngneat/dialog';
 import { CategoryService } from '../../services/category.service';
+import { Store } from '@ngrx/store';
+import { selectCategories } from '../../store/selectors/categories.selector';
+import { Category } from '../../interfaces/category';
 
 @Component({
-  selector: 'app-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss']
+	selector: 'app-category-list',
+	templateUrl: './category-list.component.html',
+	styleUrls: ['./category-list.component.scss'],
 })
 export class CategoryListComponent implements OnInit {
+	public icon: string = '';
+	public name: string = '';
+	public count: number = 0;
+	
+	public categories: Category[] = [];
 
-  public icon: string = "";
-  public name: string = "";
-  public count: number = 0;
-  
-  constructor(private dialog: DialogService, public ref: DialogRef, public categoryService: CategoryService) { }
+	constructor(
+		public ref: DialogRef,
+		public categoryService: CategoryService,
+		private store: Store
+	) {}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+		this.store.select(selectCategories).subscribe(categories => {
+			this.categories = categories;
+		});
+	}
 
-  openAddCategory(){
-    this.dialog.open(AddCategoryComponent);
-  }
-  
+	openAddCategory() {
+		this.categoryService.add()
+	}
 }

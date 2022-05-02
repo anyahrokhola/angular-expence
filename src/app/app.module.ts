@@ -22,6 +22,11 @@ import { InputsModule } from './modules/inputs/inputs.module';
 import { PipeModule } from './modules/pipe/pipe.module';
 import { SetDateComponent } from './components/set-date/set-date.component';
 import { BulkModule } from './modules/bulk/bulk.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { expencesReducer } from './store/reducers/expence.reducer';
 
 @NgModule({
 	declarations: [
@@ -53,6 +58,9 @@ import { BulkModule } from './modules/bulk/bulk.module';
 		PipeModule,
 		BulkModule,
 		DragDropModule,
+		StoreModule.forRoot({ expences: expencesReducer }, {}),
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+		EffectsModule.forRoot([]),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
