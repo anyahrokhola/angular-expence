@@ -16,14 +16,19 @@ export class CategoryViewComponent implements OnInit {
     id: -1,
   };
 
+  public text: string;
+
   constructor(public categoryService: CategoryService) {}
 
   ngOnInit(): void {
+   
     this.category = this.getCategoryData(this.categoryService.categories);
 
     this.categoryService.categories$.subscribe((categories) => {
       this.category = this.getCategoryData(categories);
     });
+
+    this.text = this.category.id != -1 ? this.category.name : "No category";
   }
 
   private getCategoryData(data: Category[]): Category {
@@ -40,4 +45,5 @@ export class CategoryViewComponent implements OnInit {
       id: -1,
     };
   }
+
 }
