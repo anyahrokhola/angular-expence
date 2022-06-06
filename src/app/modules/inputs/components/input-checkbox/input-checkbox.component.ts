@@ -18,10 +18,10 @@ export class InputCheckboxComponent implements ControlValueAccessor {
 
 	constructor() {}
 
-	onChange: any = () => {};
-	onTouch: any = () => {};
+	onChange: (value: boolean) => void;
+	onTouch: () => void;
 
-	writeValue(value: any): void {
+	writeValue(value: boolean): void {
 		this.val = value;
 	}
 	registerOnChange(fn: any): void {

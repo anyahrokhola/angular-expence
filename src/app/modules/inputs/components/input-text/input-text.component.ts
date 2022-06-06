@@ -17,12 +17,12 @@ export class InputTextComponent implements ControlValueAccessor {
   @Input() placeholder: string = 'Type hear';
 
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: (value: string) => {};
+  onTouch: () => {};
 
   val = '';
 
-  writeValue(value: any) {
+  writeValue(value: string) {
     this.val = value;
   }
 

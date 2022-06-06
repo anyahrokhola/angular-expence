@@ -2,6 +2,7 @@ import { ExpenceStoreHelper } from 'src/app/helpers/expence-store.helper';
 import { ExpenceHelper } from 'src/app/helpers/expence.helper';
 import { ExpenceStore } from 'src/app/interfaces/store.interface';
 import { ExpenceAction, ExpenceUnion } from '../actions/expence.actions';
+import { mapValues } from 'lodash';
 
 export const initialState: ExpenceStore = ExpenceStoreHelper.getInitialData();
 
@@ -14,32 +15,46 @@ export const expencesReducer = (state: ExpenceStore = initialState, action: Expe
 
 			return { ...state, [key]: ExpenceHelper.getNewList(state, item) };
 		}
-		case ExpenceAction.EditExpence: {
-			const key = ExpenceHelper.getExpenceDate(action.expence.date);
-			const newItem = ExpenceHelper.getExpence({ ...action.expence, ...action.newExpence });
-			const newKey = ExpenceHelper.getExpenceDate(newItem.date);
+		case ExpenceAction.EditExpence:
+		case ExpenceAction.CheckExpence: {
+			const expences = Array.isArray(action.expence) ? action.expence : [action.expence];
 
-			if (key === newKey) {
-				const data = [...state[key]];
-				const i = data.findIndex(el => el.id === action.expence.id);
+			let newState = { ...state };
 
-				data[i] = newItem;
+			for (const expence of expences) {
+				const key = ExpenceHelper.getExpenceDate(expence.date);
+				const newItem = ExpenceHelper.getExpence({ ...expence, ...action.newExpence });
+				const newKey = ExpenceHelper.getExpenceDate(newItem.date);
 
-				return { ...state, [key]: data };
+				if (key === newKey) {
+					newState = { ...newState, [key]: newState[key].map(el => el.id === expence.id ? newItem : el) };
+					continue;
+				}
+
+				const data = ExpenceHelper.getRemovedList(newState, expence);
+				const newData = ExpenceHelper.getNewList(newState, newItem);
+
+				newState = { ...newState, [key]: data, [newKey]: newData };
 			}
 
-			const data = ExpenceHelper.getRemovedList(state, action.expence);
-			const newData = ExpenceHelper.getNewList(state, newItem);
-
-			return { ...state, [key]: data, [newKey]: newData };
+			return newState;
+		}
+		case ExpenceAction.CheckAllExpences: {
+			return mapValues(state, expences => expences.map(el => ({...el, isChecked: action.isAllChecked})));
 		}
 		case ExpenceAction.DeleteExpence: {
-			const key = ExpenceHelper.getExpenceDate(action.expence.date);
+			const expences = Array.isArray(action.expence) ? action.expence : [action.expence];
 
-			return { ...state, [key]: ExpenceHelper.getRemovedList(state, action.expence) };
+			let newState = { ...state };
+
+			for (const expence of expences) {
+				const key = ExpenceHelper.getExpenceDate(expence.date);
+				newState = { ...newState, [key]: ExpenceHelper.getRemovedList(newState, expence) };
+			}
+
+			return newState;
 		}
 		default:
 			return state;
 	}
 };
-

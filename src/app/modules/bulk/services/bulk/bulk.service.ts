@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject } from 'rxjs';
 import { SetDateComponent } from 'src/app/components/set-date/set-date.component';
 import { Expence } from 'src/app/interfaces/expence';
 import { DortOption } from 'src/app/modules/shared/interfaces/dort-option';
-import { DeleteExpence, EditExpence } from 'src/app/store/actions/expence.actions';
-import { selectExpences } from 'src/app/store/selectors/expence.selector';
+import { CheckAllExpences, CheckExpence, DeleteExpence, EditExpence } from 'src/app/store/actions/expence.actions';
+import { selectCheckedExpences } from 'src/app/store/selectors/expence.selector';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class BulkService {
-	public checkeds$ = new BehaviorSubject<Expence[]>([]);
+	private checkeds: Expence[] = [];
+
+	constructor(private store: Store, private dialog: DialogService) {
+		this.store.select(selectCheckedExpences).subscribe(expences => (this.checkeds = expences));
+	}
 
 	public actions: DortOption[] = [
 		{
@@ -25,76 +28,32 @@ export class BulkService {
 		},
 	];
 
-	private expences: Record<string, Expence[]> = {};
-
-	constructor(private store: Store, private dialog: DialogService) {
-		this.store.select(selectExpences).subscribe(expences => (this.expences = expences));
-	}
 
 	check(item: Expence | Expence[]) {
-		const items = Array.isArray(item) ? item : [item];
-		items.forEach(el => (el.isChecked = true));
-		const checkeds = this.checkeds$.value;
-		this.checkeds$.next([...checkeds, ...items]);
+		this.store.dispatch(new CheckExpence(item, true));
 	}
 
 	uncheck(item: Expence | Expence[]) {
-		const items = Array.isArray(item) ? item : [item];
-		items.forEach(el => (el.isChecked = false));
-		const checkeds = this.checkeds$.value;
-		this.checkeds$.next(checkeds.filter(el => !items.find(it => it.id === el.id)));
+		this.store.dispatch(new CheckExpence(item, false));
 	}
 
 	checkAll() {
-		const keys = Object.keys(this.expences);
-		let checkeds: Expence[] = [];
-		keys.forEach(key => {
-			checkeds = checkeds.concat(this.expences[key]);
-		});
-		this.check(checkeds);
-		this.checkeds$.next([...checkeds]);
+		this.store.dispatch(new CheckAllExpences(true));
 	}
 
 	uncheckAll() {
-		this.uncheck(this.checkeds$.value);
-		this.checkeds$.next([]);
-	}
-
-	getLengthCheckeds(): number {
-		const keys = Object.keys(this.expences);
-		let checkeds: Expence[] = [];
-		keys.forEach(key => {
-			checkeds = checkeds.concat(this.expences[key]);
-		});
-
-		return checkeds.length;
-	}
-
-	isEqually(): boolean {
-		let isEqually: boolean;
-		if (this.checkeds$.value.length === this.getLengthCheckeds() && this.checkeds$.value.length != 0) {
-			isEqually = true;
-		} else {
-			isEqually = false;
-		}
-		return isEqually;
+		this.store.dispatch(new CheckAllExpences(false));
 	}
 
 	removeChecked(): void {
-		const checkeds = this.checkeds$.value;
-		checkeds.forEach(el => this.store.dispatch(new DeleteExpence(el)));
-		this.checkeds$.next([]);
+		this.store.dispatch(new DeleteExpence(this.checkeds))
 	}
 
-	openSetDate(): void {
-		const dialogRef = this.dialog.open(SetDateComponent);
+	async openSetDate(): Promise<void> {
+		const result = await this.dialog.open(SetDateComponent).afterClosed$.toPromise();
 
-		dialogRef.afterClosed$.subscribe((result: Date | null) => {
-			if (result) {
-				const checkeds = this.checkeds$.value;
-				checkeds.forEach(el =>this.store.dispatch(new EditExpence(el, { date: result })));
-				this.checkeds$.next([]);
-			}
-		});
+		if (result) {
+			this.store.dispatch(new EditExpence(this.checkeds, { date: result, isChecked: false }))
+		}
 	}
 }

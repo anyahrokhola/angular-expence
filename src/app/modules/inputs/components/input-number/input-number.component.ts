@@ -20,8 +20,8 @@ export class InputNumberComponent implements ControlValueAccessor {
 
   public isValid: boolean = true;
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: (value?: number | string) => {};
+  onTouch: () => {};
 
   writeValue(value: string) {
     this.val = value;

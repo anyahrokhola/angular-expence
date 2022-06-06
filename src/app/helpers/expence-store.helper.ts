@@ -11,7 +11,7 @@ export class ExpenceStoreHelper {
 			const data: ExpenceStore = {};
 
 			keys.forEach(key => {
-				data[key] = expences[key].map(item => ExpenceHelper.getExpence(item));
+				data[key] = expences[key].map(item => ({ ...ExpenceHelper.getExpence(item), isChecked: false }));
 			});
 
 			return data;

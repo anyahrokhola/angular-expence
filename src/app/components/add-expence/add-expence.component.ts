@@ -35,6 +35,7 @@ export class AddExpenceComponent implements OnInit {
 	constructor(private store: Store, public ref: DialogRef) {}
 
 	ngOnInit() {
+		console.log(this.ref.data);
 		this.store.select(selectCategories).subscribe(categories => {
 			this.options = categories.map(category => ({
 				id: category.id,

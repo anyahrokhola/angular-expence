@@ -18,8 +18,8 @@ export class InputSelectComponent implements ControlValueAccessor {
   @Input() options: SelectOption[];
   @Input() placeholder: string = 'Choose element';
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: (value: number) => {};
+  onTouch: () => {};
 
   public val: number;
 

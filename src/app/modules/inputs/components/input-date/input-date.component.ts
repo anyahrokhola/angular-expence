@@ -17,8 +17,8 @@ export class InputDateComponent implements ControlValueAccessor {
 
   @Input() placeholder: string = 'Pick date';
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: (value: Date) => {};
+  onTouch: () => {};
 
   val = '';
 

@@ -40,6 +40,7 @@ export class ExpenceServiceService {
 		}
 	}
 
+
 	public saveExpences(expences: ExpenceStore) {
 		const jsonData = JSON.stringify(expences);
 		localStorage.setItem('expences', jsonData);

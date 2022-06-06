@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DialogRef } from '@ngneat/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/modules/validation/validators/custom-validators';
@@ -8,17 +8,11 @@ import { CustomValidators } from 'src/app/modules/validation/validators/custom-v
   templateUrl: './add-salary.component.html',
   styleUrls: ['./add-salary.component.scss']
 })
-export class AddSalaryComponent implements OnInit {
+export class AddSalaryComponent {
   
   priceControl = new FormControl('',[Validators.required, Validators.min(1), CustomValidators.number]);
 
   constructor(public ref: DialogRef){}
-
-  ngOnInit(): void {
-    this.priceControl.valueChanges.subscribe((value) => {
-      console.log(value)
-    })
-  }
 
   addSalaryValue(){
     this.priceControl.markAllAsTouched();

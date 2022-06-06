@@ -18,8 +18,8 @@ export class CategoryColorComponent implements OnInit, ControlValueAccessor {
   public colors: ReadonlyArray<typeof colors[number]> = colors;
   public value: string = 'black';
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: (value: string) => {};
+  onTouch: () => {};
   
   constructor(public ref: DialogRef) { }
 

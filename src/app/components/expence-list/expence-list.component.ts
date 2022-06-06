@@ -32,4 +32,12 @@ export class ExpenceListComponent implements OnInit {
 	drop(event: CdkDragDrop<Expence[]>, key: string) {
 		this.store.dispatch(new EditExpence(event.item.data, { date: new Date(key) }))
 	}
+
+	public isIdChanged(_index: number, item: Expence): number {
+		return item.id
+	}
+
+	public isDateChanged(_index: number, key: Date): string {
+		return key.toString();
+	}
 }

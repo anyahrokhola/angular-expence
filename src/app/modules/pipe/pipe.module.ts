@@ -8,7 +8,7 @@ import { DateDayPipe } from './date-day/date-day.pipe';
 @NgModule({
   declarations: [TimeFormatPipe, IconBackgroundColorPipe, DateFormatPipe, DateDayPipe],
   imports: [CommonModule],
-  providers: [],
+  providers: [TimeFormatPipe, IconBackgroundColorPipe, DateFormatPipe, DateDayPipe],
   exports: [TimeFormatPipe, IconBackgroundColorPipe, DateFormatPipe, DateDayPipe],
 })
 export class PipeModule {}

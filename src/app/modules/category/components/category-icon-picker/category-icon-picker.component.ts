@@ -22,8 +22,8 @@ export class CategoryIconPickerComponent
   public icon: IconData | null = null;
   public disabled: boolean = false;
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: (value: IconData) => {};
+  onTouch: () => {};
 
   constructor(public dialog: DialogService) {}
 
@@ -31,9 +31,8 @@ export class CategoryIconPickerComponent
 
   writeValue(icon: IconData): void {
     this.icon = icon;
-    console.log(icon);
-    
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn
   }

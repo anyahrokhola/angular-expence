@@ -9,19 +9,14 @@ export class ExpenceHelper {
 		return data ? [...data, item] : [item];
 	}
 
-	public static getRemovedList(state: ExpenceStore, item: Expence): Expence[] {	
+	public static getRemovedList(state: ExpenceStore, item: Expence): Expence[] {
 		const key = ExpenceHelper.getExpenceDate(item.date);
 
 		return state[key].filter(el => el.id !== item.id);
 	}
 
 	public static getExpence(item: Expence): Expence {
-		return {
-			...item,
-			price: Number(item.price),
-			date: new Date(item.date),
-			isChecked: false,
-		};
+		return { ...item, price: Number(item.price), date: new Date(item.date) };
 	}
 
 	public static getIdExpence(state: ExpenceStore): number {

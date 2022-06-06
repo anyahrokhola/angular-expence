@@ -1,5 +1,5 @@
 <ng-container cdkDropListGroup>
-	<div class="group" *ngFor="let date of dates; index as j">
+	<div class="group" *ngFor="let date of dates; index as j; trackBy: isDateChanged">
 		<ng-container *ngIf="expences[keys[j]].length">
 			<div class="date-wrapper">
 				<span class="date">{{ date | dateFormat }}</span>
@@ -11,7 +11,7 @@
 				[cdkDropListData]="expences[keys[j]]"
 				(cdkDropListDropped)="drop($event, keys[j])"
 			>
-				<li *ngFor="let item of expences[keys[j]]; index as i" class="loggs" cdkDrag [cdkDragData]="item">
+				<li *ngFor="let item of expences[keys[j]]; index as i; trackBy: isIdChanged" class="loggs" cdkDrag [cdkDragData]="item">
 					<app-expence-item [item]="item" class="item"></app-expence-item>
 				</li>
 			</ul>
